@@ -1,8 +1,8 @@
-package repositorio;
+package repositorio.dados;
 
 import java.sql.SQLException;
 
-import repositorio.obj.Evento;
+import repositorio.dados.entidades.Evento;
 
 public class Testebd {
     public static void main(String[] args) throws SQLException {

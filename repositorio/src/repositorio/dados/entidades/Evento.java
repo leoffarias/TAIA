@@ -1,4 +1,4 @@
-package repositorio.obj;
+package repositorio.dados.entidades;
 
 import java.util.Calendar;
 

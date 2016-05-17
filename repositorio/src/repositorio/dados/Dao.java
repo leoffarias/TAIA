@@ -1,11 +1,11 @@
-package repositorio;
+package repositorio.dados;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import repositorio.obj.Evento;
+import repositorio.dados.entidades.Evento;
 
 public class Dao {
 
