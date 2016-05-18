@@ -8,14 +8,59 @@ public class Evento {
 		private String nome;
 		private String endereco;
 		private String descricao;
-		
-		public Evento(String nome, String endereco, String descricao) {
-			this.nome = nome;
-			this.endereco = endereco;
-			this.descricao = descricao;
-	}
-		
-		public Evento() {			
+		private String nomeCurto;
+		private String tipo;
+		private int idArea;
+		private int dia;
+		private String hora;
+		private String foto;
+
+		public String getNomeCurto() {
+			return nomeCurto;
+		}
+
+		public void setNomeCurto(String nomeCurto) {
+			this.nomeCurto = nomeCurto;
+		}
+
+		public String getTipo() {
+			return tipo;
+		}
+
+		public void setTipo(String tipo) {
+			this.tipo = tipo;
+		}
+
+		public int getIdArea() {
+			return idArea;
+		}
+
+		public void setIdArea(int idArea) {
+			this.idArea = idArea;
+		}
+
+		public int getDia() {
+			return dia;
+		}
+
+		public void setDia(int dia) {
+			this.dia = dia;
+		}
+
+		public String getHora() {
+			return hora;
+		}
+
+		public void setHora(String hora) {
+			this.hora = hora;
+		}
+
+		public String getFoto() {
+			return foto;
+		}
+
+		public void setFoto(String foto) {
+			this.foto = foto;
 		}
 
 		public String getNome() {

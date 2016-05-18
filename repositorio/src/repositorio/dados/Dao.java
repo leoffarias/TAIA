@@ -18,26 +18,22 @@ public class Dao {
 	  
 	  public void adiciona(Evento evento) throws SQLException {
 		    String sql = "insert into evento " +
-		            "(nome,descricao,endereco,nome_curto,tipo,id_area, dia, hora)" +
-		            " values (?,?,?,?,?,?,?,?)";
+		            "(nome,descricao,endereco,nome_curto,tipo,id_area, dia, hora, foto)" +
+		            " values (?,?,?,?,?,?,?,?,?)";
 
 		    try {
-		        // prepared statement para inserção
 		        PreparedStatement stmt = connection.prepareStatement(sql);
-
-		        // seta os valores
 
 		        stmt.setString(1,evento.getNome());
 		        stmt.setString(2,evento.getDescricao());
 		        stmt.setString(3,evento.getEndereco());
-		        stmt.setString(4,evento.getNome());
-		        stmt.setString(5,evento.getEndereco());
-		        stmt.setInt(6,1);
-		        stmt.setInt(7,20160521);
-		        stmt.setString(8,"16:00");
+		        stmt.setString(4,evento.getNomeCurto());
+		        stmt.setString(5,evento.getTipo());
+		        stmt.setInt(6,evento.getIdArea());
+		        stmt.setInt(7,evento.getDia());
+		        stmt.setString(8,evento.getHora());
+		        stmt.setString(9,evento.getFoto());
 
-
-		        // executa
 		        stmt.execute();
 		        stmt.close();
 		    } catch (SQLException e) {
