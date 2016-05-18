@@ -1,0 +1,59 @@
+/*Geral*/
+
+body {
+	font-size:16px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+a {
+	text-decoration:none;
+	color:black;
+}
+
+.form-group {
+	overflow:hidden;
+}
+
+hr.star-light,
+hr.star-primary {
+    margin: 25px auto 30px;
+    padding: 0;
+    max-width: 250px;
+    border: 0;
+    border-top: solid 5px;
+    text-align: center;
+}
+
+hr.star-light:after,
+hr.star-primary:after {
+    content: "\f005";
+    display: inline-block;
+    position: relative;
+    top: -.6em;
+    padding: 0 .25em;
+    font-family: FontAwesome;
+    font-size: 2em;
+}
+
+.main-desc hr.star-primary:after {
+	content:"";
+}
+
+hr.star-light {
+    border-color: #fff;
+}
+
+hr.star-light:after {
+    color: #fff;
+    background-color: #396DD0;
+}
+
+hr.star-primary {
+    border-color: #396DD0;
+}
+
+hr.star-primary:after {
+    color: #F9C80E;
+    background-color: #fff;
+}
+

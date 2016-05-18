@@ -40,12 +40,18 @@ public class adicionaEventos extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-        
-        // imprime o nome do contato que foi adicionado
+       
         out.println("<html>");
-        out.println("<body>");
-        out.println("Contato " + evento.getNome() + 
-                " adicionado com sucesso");    
+        out.println("<head>");
+        out.println("<title>TAIA</title>");
+        out.println("<link rel='stylesheet' href='../css/bootstrap.min.css'>");
+        out.println("<link rel='stylesheet' href='../css/main.css'>");
+        out.println("<link rel='stylesheet' href='../css/normalize.css'>");
+        out.println("</head>");
+        out.println("<body style='text-align:center;'>");
+        out.println("<h2>Contato " + evento.getNome() + 
+                " adicionado com sucesso</h2>");
+        out.println("<br /><a href='../cadastrarEventos'><button class='btn btn-primary'>Cadastrar outro</button></a>");
         out.println("</body>");
         out.println("</html>");
     }
