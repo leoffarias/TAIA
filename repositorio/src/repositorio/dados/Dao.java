@@ -2,7 +2,10 @@ package repositorio.dados;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import repositorio.dados.entidades.*;
 
@@ -122,6 +125,102 @@ public class Dao {
 
 		        stmt.execute();
 		        stmt.close();
+		    } catch (SQLException e) {
+		        throw new RuntimeException(e);
+		    } finally {
+		           connection.close();
+	         }
+		}
+	  
+	  public List<Area> getAreas() throws SQLException {
+		    String sql = "SELECT nome, id FROM area;";
+		    
+		    try {
+		        PreparedStatement stmt = connection.prepareStatement(sql);
+		        ResultSet rs = stmt.executeQuery();
+
+		        List<Area> areas = new ArrayList<Area>();
+
+		        while (rs.next()) {
+
+		            // criando o objeto Contato
+		            Area area = new Area();
+		            area.setNome(rs.getString("nome"));
+		            area.setId(Integer.parseInt(rs.getString("id")));
+
+		            // adicionando o objeto à lista
+		            areas.add(area);
+		        }
+
+		        rs.close();
+		        stmt.close();
+
+		        return areas;
+
+		    } catch (SQLException e) {
+		        throw new RuntimeException(e);
+		    } finally {
+		           connection.close();
+	         }
+		}
+	  
+	  public List<Curso> getCursos() throws SQLException {
+		    String sql = "SELECT nome, id FROM curso;";
+		    
+		    try {
+		        PreparedStatement stmt = connection.prepareStatement(sql);
+		        ResultSet rs = stmt.executeQuery();
+
+		        List<Curso> cursos = new ArrayList<Curso>();
+
+		        while (rs.next()) {
+
+		            // criando o objeto Contato
+		            Curso curso = new Curso();
+		            curso.setNome(rs.getString("nome"));
+		            curso.setId(Integer.parseInt(rs.getString("id")));
+
+		            // adicionando o objeto à lista
+		            cursos.add(curso);
+		        }
+
+		        rs.close();
+		        stmt.close();
+
+		        return cursos;
+
+		    } catch (SQLException e) {
+		        throw new RuntimeException(e);
+		    } finally {
+		           connection.close();
+	         }
+		}
+	  
+	  public List<Universidade> getUnivs() throws SQLException {
+		    String sql = "SELECT nome, id FROM universidades;";
+		    
+		    try {
+		        PreparedStatement stmt = connection.prepareStatement(sql);
+		        ResultSet rs = stmt.executeQuery();
+
+		        List<Universidade> univs = new ArrayList<Universidade>();
+
+		        while (rs.next()) {
+
+		            // criando o objeto Contato
+		        	Universidade univ = new Universidade();
+		            univ.setNome(rs.getString("nome"));
+		            univ.setId(Integer.parseInt(rs.getString("id")));
+
+		            // adicionando o objeto à lista
+		            univs.add(univ);
+		        }
+
+		        rs.close();
+		        stmt.close();
+
+		        return univs;
+
 		    } catch (SQLException e) {
 		        throw new RuntimeException(e);
 		    } finally {
