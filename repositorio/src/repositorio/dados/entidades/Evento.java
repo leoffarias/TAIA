@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 public class Evento {
 
-		
 		private String nome;
 		private String endereco;
 		private String descricao;
@@ -14,6 +13,15 @@ public class Evento {
 		private int dia;
 		private String hora;
 		private String foto;
+		private String tags;
+
+		public String getTags() {
+			return tags;
+		}
+
+		public void setTags(String tags) {
+			this.tags = tags;
+		}
 
 		public String getNomeCurto() {
 			return nomeCurto;

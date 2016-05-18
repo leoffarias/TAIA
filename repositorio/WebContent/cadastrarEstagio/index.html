@@ -7,24 +7,18 @@
 </head>
 <body>
 	<div class="container" style="margin-top:50px;">
-	<h1 style="text-align:center;">Cadastrar evento</h1>
-	<form action="adicionaEventos" method="POST" class="form-horizontal">
+	<h1 style="text-align:center;">Cadastrar estágio</h1>
+	<form action="adicionaEstagios" method="POST" class="form-horizontal">
 	<div class="form-group">
-		<label for="inputNome" class="col-sm-2 control-label">Nome</label>
+		<label for="inputFuncao" class="col-sm-2 control-label">Função</label>
 		<div class="col-sm-10">
-			<input type="text" name="nome" id="inputNome" class="form-control" placeholder="Nome">
+			<input type="text" name="funcao" id="inputFuncao" class="form-control" placeholder="Função">
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputNomeCurto" class="col-sm-2 control-label">Nome Curto</label>
+		<label for="inputEmpresa" class="col-sm-2 control-label">Empresa</label>
 		<div class="col-sm-10">
-			<input type="text" name="nomeCurto" id="inputNomeCurto" class="form-control" placeholder="Nome Curto">
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="inputEndereco" class="col-sm-2 control-label">Endereço</label>
-		<div class="col-sm-10">
-			<input type="text" name="endereco" class="form-control" id="inputEndereco" placeholder="Endereço">
+			<input type="text" name="empresa" class="form-control" id="inputEmpresa" placeholder="Empresa">
 		</div>
 	</div>
 	
@@ -35,21 +29,15 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputTipo" class="col-sm-2 control-label">Tipo de Evento</label>
+		<label for="inputSite" class="col-sm-2 control-label">Site</label>
 		<div class="col-sm-10">
-			<input type="text" name="tipo" id="inputTipo" class="form-control" placeholder="Tipo de Evento (ex. Palestra)">
+			<input type="text" name="site" id="inputSite" class="form-control" placeholder="Link com mais informações">
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputDia" class="col-sm-2 control-label">Dia</label>
+		<label for="inputCurso" class="col-sm-2 control-label">Curso</label>
 		<div class="col-sm-10">
-			<input type="text" name="dia" id="inputDia" class="form-control" placeholder="Dia">
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="inputHora" class="col-sm-2 control-label">Hora</label>
-		<div class="col-sm-10">
-			<input type="text" name="hora" id="inputHora" class="form-control" placeholder="Hora (formato HH:MM)">
+			<input type="text" name="idCurso" id="inputCurso" class="form-control" placeholder="Curso">
 		</div>
 	</div>
 	<div class="form-group">
