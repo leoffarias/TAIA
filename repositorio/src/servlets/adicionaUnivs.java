@@ -33,14 +33,6 @@ public class adicionaUnivs extends HttpServlet {
         // obtains the upload file part in this multipart request
         Part filePart = request.getPart("foto");
         if (filePart != null) {
-            // prints out some information for debugging
-            System.out.println(filePart.getName());
-            System.out.println(filePart.getSize());
-            System.out.println(filePart.getContentType());
-
-            //obtains input stream of the upload file
-            //the InputStream will point to a stream that contains
-            //the contents of the file
             inputStream = filePart.getInputStream();
             
         }
