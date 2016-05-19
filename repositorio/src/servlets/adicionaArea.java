@@ -1,19 +1,23 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import repositorio.dados.Dao;
 import repositorio.dados.entidades.Area;
 
 @WebServlet("/cadastrarArea/adicionaArea")
+@MultipartConfig
 public class adicionaArea extends HttpServlet {
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response)
@@ -23,12 +27,16 @@ public class adicionaArea extends HttpServlet {
 
 		// pegando os parâmetros do request
 		String nome = request.getParameter("nome");
-		String foto = request.getParameter("foto");
+		InputStream inputStream = null;
+        Part filePart = request.getPart("foto");
+        if (filePart != null) {
+            inputStream = filePart.getInputStream();            
+        }
 
 		// monta um objeto contato
 		Area area = new Area();
 		area.setNome(nome);
-		area.setFoto(foto);
+		area.setFoto(inputStream);
 
 		// salva o contato
 		Dao dao = new Dao();

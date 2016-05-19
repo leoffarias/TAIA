@@ -1,9 +1,11 @@
 package repositorio.dados.entidades;
 
+import java.io.InputStream;
+
 public class Area {
 
 		private String nome;
-		private String foto;
+		private InputStream foto;
 		private int id;
 		
 		public int getId() {
@@ -18,11 +20,11 @@ public class Area {
 		public void setNome(String nome) {
 			this.nome = nome;
 		}
-		public String getFoto() {
+		public InputStream getFoto() {
 			return foto;
 		}
-		public void setFoto(String foto) {
-			this.foto = foto;
+		public void setFoto(InputStream inputStream) {
+			this.foto = inputStream;
 		}
 		
 }

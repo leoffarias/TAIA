@@ -1,11 +1,13 @@
 package repositorio.dados.entidades;
 
+import java.io.InputStream;
+
 public class Aluno {
 
 		private String nome;
 		private int idUniv;
 		private int idCurso;
-		private String foto;
+		private InputStream foto;
 		private String tags;
 		private String email;
 		private String senha;
@@ -46,11 +48,11 @@ public class Aluno {
 		public void setIdCurso(int idCurso) {
 			this.idCurso = idCurso;
 		}
-		public String getFoto() {
+		public InputStream getFoto() {
 			return foto;
 		}
-		public void setFoto(String foto) {
-			this.foto = foto;
+		public void setFoto(InputStream inputStream) {
+			this.foto = inputStream;
 		}
 
 }

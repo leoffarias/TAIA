@@ -1,5 +1,7 @@
 package repositorio.dados.entidades;
 
+import java.io.InputStream;
+
 public class Estagio {
 
 		private String funcao;
@@ -8,7 +10,7 @@ public class Estagio {
 		private String empresa;
 		private int idArea;
 		private String site;
-		private String foto;
+		private InputStream foto;
 		private String tags;
 		
 		public String getFuncao() {
@@ -47,11 +49,11 @@ public class Estagio {
 		public void setSite(String site) {
 			this.site = site;
 		}
-		public String getFoto() {
+		public InputStream getFoto() {
 			return foto;
 		}
-		public void setFoto(String foto) {
-			this.foto = foto;
+		public void setFoto(InputStream inputStream) {
+			this.foto = inputStream;
 		}
 		public String getTags() {
 			return tags;

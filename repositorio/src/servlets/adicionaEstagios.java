@@ -1,19 +1,23 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import repositorio.dados.Dao;
 import repositorio.dados.entidades.Estagio;
 
 @WebServlet("/cadastrarEstagio/adicionaEstagios")
+@MultipartConfig
 public class adicionaEstagios extends HttpServlet {
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response)
@@ -28,8 +32,12 @@ public class adicionaEstagios extends HttpServlet {
 		String idCurso = request.getParameter("idCurso");
 		String idArea = request.getParameter("idArea");
 		String site = request.getParameter("site");
-		String foto = request.getParameter("foto");
 		String tags = request.getParameter("tags");
+		InputStream inputStream = null;
+        Part filePart = request.getPart("foto");
+        if (filePart != null) {
+            inputStream = filePart.getInputStream();            
+        }
 
 
 		// monta um objeto contato
@@ -40,7 +48,7 @@ public class adicionaEstagios extends HttpServlet {
 		estagio.setIdArea(Integer.parseInt(idArea));
 		estagio.setIdCurso(Integer.parseInt(idCurso));
 		estagio.setSite(site);
-		estagio.setFoto(foto);
+		estagio.setFoto(inputStream);
 		estagio.setTags(tags);
 
 

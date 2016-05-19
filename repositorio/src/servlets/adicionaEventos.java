@@ -1,21 +1,25 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import repositorio.dados.Dao;
 import repositorio.dados.entidades.Evento;
 
 @WebServlet("/cadastrarEventos/adicionaEventos")
+@MultipartConfig
 public class adicionaEventos extends HttpServlet {
-	protected void service(HttpServletRequest request,
+	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response)
 					throws IOException, ServletException {
 
@@ -28,12 +32,17 @@ public class adicionaEventos extends HttpServlet {
 		String tipo = request.getParameter("tipo");
 		String idArea = request.getParameter("idArea");
 		String dia = request.getParameter("dia");
+		String mes = request.getParameter("mes");
+		String ano = request.getParameter("ano");
 		String hora = request.getParameter("hora");
 		String nomeCurto = request.getParameter("nomeCurto");
-		String foto = request.getParameter("foto");
 		String tags = request.getParameter("tags");
-
-
+		InputStream inputStream = null;
+        Part filePart = request.getPart("foto");
+        if (filePart != null) {
+            inputStream = filePart.getInputStream();            
+        }
+        String data=ano+mes+dia;
 		// monta um objeto contato
 		Evento evento = new Evento();
 		evento.setNome(nome);
@@ -41,10 +50,10 @@ public class adicionaEventos extends HttpServlet {
 		evento.setDescricao(descricao);
 		evento.setTipo(tipo);
 		evento.setIdArea(Integer.parseInt(idArea));
-		evento.setDia(Integer.parseInt(dia));
+		evento.setDia(Integer.parseInt(data));
 		evento.setHora(hora);
 		evento.setNomeCurto(nomeCurto);
-		evento.setFoto(foto);
+		evento.setFoto(inputStream);
 		evento.setTags(tags);
 
 

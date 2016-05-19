@@ -14,7 +14,7 @@ repositorio.dados.entidades.*"%>
 <body>
 	<div class="container" style="margin-top: 50px;">
 		<h1 style="text-align: center;">Cadastrar</h1>
-		<form action="adicionaAlunos" method="POST" class="form-horizontal">
+		<form enctype="multipart/form-data" action="adicionaAlunos" method="POST" class="form-horizontal">
 			<div class="form-group">
 				<label for="inputNome" class="col-sm-2 control-label">Nome</label>
 				<div class="col-sm-10">
@@ -72,15 +72,8 @@ repositorio.dados.entidades.*"%>
 			<div class="form-group">
 				<label for="inputFoto" class="col-sm-2 control-label">Foto</label>
 				<div class="col-sm-10">
-					<input type="text" name="foto" id="inputFoto" class="form-control"
-						placeholder="Foto">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputTags" class="col-sm-2 control-label">Tags</label>
-				<div class="col-sm-10">
-					<input type="text" name="tags" id="inputTags" class="form-control"
-						placeholder="Tags no formato: #t1 #t2 #t3...">
+					<input style="margin-top: 10px;" type="file" name="foto"
+						required />
 				</div>
 			</div>
 			<br />

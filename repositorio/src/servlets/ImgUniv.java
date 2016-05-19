@@ -17,14 +17,14 @@ import javax.sql.DataSource;
 import repositorio.dados.ConnectionFactory;
 
 @WebServlet("/univ/img/*")
-public class ImageServlet extends HttpServlet {
+public class ImgUniv extends HttpServlet {
 
     // content=blob, name=varchar(255) UNIQUE.
     private static final String SQL_FIND = "SELECT foto FROM universidades WHERE id = ?";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String imageName = request.getPathInfo().substring(1); // Returns "foo.png".
+        String imageName = request.getPathInfo().substring(1);
 
         try (Connection connection = new ConnectionFactory().getConnection();
         		PreparedStatement statement = connection.prepareStatement(SQL_FIND)) {

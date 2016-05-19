@@ -1,4 +1,5 @@
-<%@ page import="repositorio.dados.*,
+<%@ page
+	import="repositorio.dados.*,
 java.util.ArrayList,
 java.util.List,
 repositorio.dados.entidades.*"%>
@@ -13,7 +14,8 @@ repositorio.dados.entidades.*"%>
 <body>
 	<div class="container" style="margin-top: 50px;">
 		<h1 style="text-align: center;">Cadastrar evento</h1>
-		<form action="adicionaEventos" method="POST" class="form-horizontal">
+		<form enctype="multipart/form-data" action="adicionaEventos"
+			method="POST" class="form-horizontal">
 			<div class="form-group">
 				<label for="inputNome" class="col-sm-2 control-label">Nome</label>
 				<div class="col-sm-10">
@@ -54,54 +56,64 @@ repositorio.dados.entidades.*"%>
 			</div>
 			<div class="form-group">
 				<label for="inputDia" class="col-sm-2 control-label">Dia</label>
-				<div class="col-sm-10">
+				<div class="col-sm-2">
 					<input type="text" name="dia" id="inputDia" class="form-control"
-						placeholder="Dia">
+						placeholder="DD">
+				</div>
+				<label for="inputMes" class="col-sm-2 control-label">Mês</label>
+				<div class="col-sm-2">
+					<input type="text" name="mes" id="inputMes" class="form-control"
+						placeholder="MM">
+				</div>
+				<label for="inputAno" class="col-sm-2 control-label">Ano</label>
+				<div class="col-sm-2">
+					<input type="text" name="ano" id="inputAno" class="form-control"
+						placeholder="AAAA">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputHora" class="col-sm-2 control-label">Hora</label>
 				<div class="col-sm-10">
 					<input type="text" name="hora" id="inputHora" class="form-control"
-						placeholder="Hora (formato HH:MM)">
+						placeholder="HH:MM (com os dois pontos)">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputAreas" class="col-sm-2 control-label">Área</label>
 				<div class="col-sm-10">
 					<select name="idArea" id="inputAreas" class="form-control">
-						<% 
-				Dao dao = new Dao(); 
-				List<Area> areas = dao.getAreas(); 
-				for (Area area : areas ) { 
-				%>
+						<%
+							Dao dao = new Dao();
+							List<Area> areas = dao.getAreas();
+							for (Area area : areas) {
+						%>
 						<option value="<%=area.getId()%>"><%=area.getNome()%></option>
 						<%
-				}
-				%>
+							}
+						%>
 					</select>
-					</div>
 				</div>
-				<div class="form-group">
-					<label for="inputTags" class="col-sm-2 control-label">Tags</label>
-					<div class="col-sm-10">
-						<input type="text" name="tags" id="inputTags" class="form-control"
-							placeholder="Tags no formato: #t1 #t2 #t3...">
-					</div>
+			</div>
+			<div class="form-group">
+				<label for="inputTags" class="col-sm-2 control-label">Tags</label>
+				<div class="col-sm-10">
+					<input type="text" name="tags" id="inputTags" class="form-control"
+						placeholder="#t1 #t2 #t3...">
 				</div>
-				<div class="form-group">
-					<label for="inputFoto" class="col-sm-2 control-label">Foto</label>
-					<div class="col-sm-10">
-						<input type="text" name="foto" id="inputFoto" class="form-control"
-							placeholder="Foto">
-					</div>
+			</div>
+			<div class="form-group">
+				<label for="inputFoto" class="col-sm-2 control-label">Foto</label>
+				<div class="col-sm-10">
+					<input style="margin-top: 10px;" type="file" name="foto"
+						placeholder="Upload Your Image" required />
 				</div>
-				<br />
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<input type="submit" class="btn btn-success" value="Cadastrar">
-					</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="submit" class="btn btn-success" value="Cadastrar">
 				</div>
+			</div>
 		</form>
 	</div>
 </body>

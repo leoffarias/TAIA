@@ -33,12 +33,9 @@ public class adicionaUnivs extends HttpServlet {
         // obtains the upload file part in this multipart request
         Part filePart = request.getPart("foto");
         if (filePart != null) {
-            inputStream = filePart.getInputStream();
-            
+            inputStream = filePart.getInputStream();            
         }
         
-        
-
 		// monta um objeto contato
 		Universidade univ = new Universidade();
 		univ.setNome(nome);

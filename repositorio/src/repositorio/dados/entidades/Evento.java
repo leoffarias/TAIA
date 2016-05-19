@@ -1,5 +1,6 @@
 package repositorio.dados.entidades;
 
+import java.io.InputStream;
 import java.util.Calendar;
 
 public class Evento {
@@ -12,7 +13,7 @@ public class Evento {
 		private int idArea;
 		private int dia;
 		private String hora;
-		private String foto;
+		private InputStream foto;
 		private String tags;
 
 		public String getTags() {
@@ -63,12 +64,12 @@ public class Evento {
 			this.hora = hora;
 		}
 
-		public String getFoto() {
+		public InputStream getFoto() {
 			return foto;
 		}
 
-		public void setFoto(String foto) {
-			this.foto = foto;
+		public void setFoto(InputStream inputStream) {
+			this.foto = inputStream;
 		}
 
 		public String getNome() {

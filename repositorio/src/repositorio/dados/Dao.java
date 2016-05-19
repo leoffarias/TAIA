@@ -35,7 +35,7 @@ public class Dao {
 		        stmt.setInt(6,evento.getIdArea());
 		        stmt.setInt(7,evento.getDia());
 		        stmt.setString(8,evento.getHora());
-		        stmt.setString(9,evento.getFoto());
+		        stmt.setBlob(9,evento.getFoto());
 		        stmt.setString(10,evento.getTags());
 		        
 
@@ -125,7 +125,7 @@ public class Dao {
 		        PreparedStatement stmt = connection.prepareStatement(sql);
 
 		        stmt.setString(1,area.getNome());
-		        stmt.setString(2,area.getFoto());
+		        stmt.setBlob(2,area.getFoto());
 
 		        stmt.execute();
 		        stmt.close();
@@ -234,18 +234,17 @@ public class Dao {
 	  
 	  public void adiciona(Aluno aluno) throws SQLException {
 		    String sql = "insert into aluno " +
-		            "(nome,id_univ,id_curso, foto, tags, email, senha)" +
-		            " values (?,?,?,?,?,?,?)";
+		            "(nome,id_univ,id_curso, foto, email, senha)" +
+		            " values (?,?,?,?,?,?)";
 		    try {
 		        PreparedStatement stmt = connection.prepareStatement(sql);
 
 		        stmt.setString(1,aluno.getNome());
-		        stmt.setString(4,aluno.getFoto());
+		        stmt.setBlob(4,aluno.getFoto());
 		        stmt.setInt(2,aluno.getIdUniv());
 		        stmt.setInt(3,aluno.getIdCurso());
-		        stmt.setString(5,aluno.getTags());
-		        stmt.setString(6,aluno.getEmail());
-		        stmt.setString(7,aluno.getSenha());
+		        stmt.setString(5,aluno.getEmail());
+		        stmt.setString(6,aluno.getSenha());
 
 		        stmt.execute();
 		        stmt.close();
@@ -270,7 +269,7 @@ public class Dao {
 		        stmt.setInt(4,estagio.getIdCurso());
 		        stmt.setString(5,estagio.getSite());
 		        stmt.setInt(6,estagio.getIdArea());
-		        stmt.setString(7,estagio.getFoto());
+		        stmt.setBlob(7,estagio.getFoto());
 		        stmt.setString(8,estagio.getTags());
 		        
 

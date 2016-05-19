@@ -14,7 +14,7 @@ repositorio.dados.entidades.*"%>
 <body>
 	<div class="container" style="margin-top: 50px;">
 		<h1 style="text-align: center;">Cadastrar estágio</h1>
-		<form action="adicionaEstagios" method="POST" class="form-horizontal">
+		<form enctype="multipart/form-data" action="adicionaEstagios" method="POST" class="form-horizontal">
 			<div class="form-group">
 				<label for="inputFuncao" class="col-sm-2 control-label">Função</label>
 				<div class="col-sm-10">
@@ -86,8 +86,8 @@ repositorio.dados.entidades.*"%>
 			<div class="form-group">
 				<label for="inputFoto" class="col-sm-2 control-label">Foto</label>
 				<div class="col-sm-10">
-					<input type="text" name="foto" id="inputFoto" class="form-control"
-						placeholder="Foto">
+					<input style="margin-top: 10px;" type="file" name="foto"
+						 required />
 				</div>
 			</div>
 			<br />
