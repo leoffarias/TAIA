@@ -40,7 +40,17 @@ public class Dao {
 		        
 
 		        stmt.execute();
-		        stmt.close();
+		        
+		    	ResultSet id = stmt.executeQuery("select last_insert_id() as last_id");
+		    	int lastId = -1;
+		    	while (id.next()) {
+		    	lastId = id.getInt(1);
+		    	}
+		    	stmt.close();
+		    	
+		    	Jaccard j = new Jaccard();
+		    	j.calcula(lastId, evento);
+ 
 		    } catch (SQLException e) {
 		        throw new RuntimeException(e);
 		    } finally {

@@ -15,9 +15,14 @@ public class Evento {
 		private String hora;
 		private InputStream foto;
 		private String tags;
+		private int id;
 
 		public String getTags() {
 			return tags;
+		}
+		
+		public int getId() {
+			return id;
 		}
 
 		public void setTags(String tags) {
@@ -94,6 +99,10 @@ public class Evento {
 
 		public void setDescricao(String descricao) {
 			this.descricao = descricao;
+		}
+
+		public void setId(int id) {
+			this.id = id;
 		}
 
 }

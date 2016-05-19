@@ -56,7 +56,6 @@ public class adicionaEventos extends HttpServlet {
 		evento.setFoto(inputStream);
 		evento.setTags(tags);
 
-
 		// salva o contato
 		Dao dao = new Dao();
 		try {
