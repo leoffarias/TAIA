@@ -12,6 +12,7 @@ public class Estagio {
 		private String site;
 		private InputStream foto;
 		private String tags;
+		private int id;
 		
 		public String getFuncao() {
 			return funcao;
@@ -60,5 +61,11 @@ public class Estagio {
 		}
 		public void setTags(String tags) {
 			this.tags = tags;
+		}
+		public int getId() {
+			return id;
+		}
+		public void setId(int id) {
+			this.id = id;
 		}
 }

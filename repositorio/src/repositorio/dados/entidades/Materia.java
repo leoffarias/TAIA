@@ -10,6 +10,7 @@ public class Materia {
 		private int idUniv;
 		private int idCurso;
 		private String tags;
+		private int id;
 		
 		public String getTags() {
 			return tags;
@@ -59,7 +60,12 @@ public class Materia {
 		public void setIdCurso(int idCurso) {
 			this.idCurso = idCurso;
 		}
-
+		public int getId() {
+			return id;
+		}
+		public void setId(int id) {
+			this.id = id;
+		}
 	
 
 }
