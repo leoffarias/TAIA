@@ -1,21 +1,25 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import repositorio.dados.Dao;
 import repositorio.dados.entidades.Universidade;
 
 @WebServlet("/cadastrarUniv/adicionaUnivs")
+@MultipartConfig
 public class adicionaUnivs extends HttpServlet {
-	protected void service(HttpServletRequest request,
+	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response)
 					throws IOException, ServletException {
 
@@ -24,13 +28,30 @@ public class adicionaUnivs extends HttpServlet {
 		// pegando os parâmetros do request
 		String nome = request.getParameter("nome");
 		String nomeCurto = request.getParameter("nomeCurto");
-		String foto = request.getParameter("foto");
+		
+		InputStream inputStream = null; // input stream of the upload file
+        // obtains the upload file part in this multipart request
+        Part filePart = request.getPart("foto");
+        if (filePart != null) {
+            // prints out some information for debugging
+            System.out.println(filePart.getName());
+            System.out.println(filePart.getSize());
+            System.out.println(filePart.getContentType());
+
+            //obtains input stream of the upload file
+            //the InputStream will point to a stream that contains
+            //the contents of the file
+            inputStream = filePart.getInputStream();
+            
+        }
+        
+        
 
 		// monta um objeto contato
 		Universidade univ = new Universidade();
 		univ.setNome(nome);
 		univ.setNomeCurto(nomeCurto);
-		univ.setFoto(foto);
+		univ.setFoto(inputStream);
 
 		// salva o contato
 		Dao dao = new Dao();

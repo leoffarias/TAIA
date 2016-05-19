@@ -8,7 +8,7 @@
 <body>
 	<div class="container" style="margin-top:50px;">
 	<h1 style="text-align:center;">Cadastrar Universidade</h1>
-	<form action="adicionaUnivs" method="POST" class="form-horizontal">
+	<form enctype="multipart/form-data" action="adicionaUnivs" method="POST" class="form-horizontal" >
 	<div class="form-group">
 		<label for="inputNome" class="col-sm-2 control-label">Nome</label>
 		<div class="col-sm-10">
@@ -24,7 +24,7 @@
 	<div class="form-group">
 		<label for="inputFoto" class="col-sm-2 control-label">Foto</label>
 		<div class="col-sm-10">
-			<input type="text" name="foto" id="inputFoto" class="form-control" placeholder="Foto">
+			<input style="margin-top:10px;" type="file" name="foto" placeholder="Upload Your Image" required/>
 		</div>
 	</div>
 	<br />

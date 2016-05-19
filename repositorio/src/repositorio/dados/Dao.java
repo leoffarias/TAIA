@@ -1,5 +1,6 @@
 package repositorio.dados;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,8 +83,11 @@ public class Dao {
 		        PreparedStatement stmt = connection.prepareStatement(sql);
 
 		        stmt.setString(1,univ.getNome());
-		        stmt.setString(3,univ.getFoto());
 		        stmt.setString(2,univ.getNomeCurto());
+		        InputStream is = univ.getFoto();
+		        if (is != null) {
+		        stmt.setBlob(3,is);
+		        }
 
 		        stmt.execute();
 		        stmt.close();
