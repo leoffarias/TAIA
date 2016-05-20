@@ -57,3 +57,63 @@ hr.star-primary:after {
     background-color: #fff;
 }
 
+.home-cont {
+    max-width: 530px;
+    padding: 55px 34px 35px;
+    border-radius: 6px;
+    /*background: #396DD0;*/
+    background: rgba(34,150,243,0.85);
+    border: 10px solid white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cadastrar-cont {
+    padding: 55px 34px 35px;
+    border-radius: 6px;
+    background: rgba(34,150,243,0.9);
+    border: 10px solid white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:white;
+}
+
+.home {
+    height:100%;
+    background: url('../img/bg1.jpg') no-repeat 100%; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.cadastrar {
+    height:100%;
+    background: url('../img/bg2.jpeg') no-repeat 100%; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+
+.btn-home {
+    max-width: 110px;
+    margin: 0 auto;
+}
+
+.home h2, .cadastrar h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight:300;
+}
+
+.novo {
+    text-align:center;
+}
+
+.novo:hover {
+    text-decoration:underline;
+}

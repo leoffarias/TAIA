@@ -4,17 +4,18 @@ java.util.ArrayList,
 java.util.List,
 repositorio.dados.entidades.*"%>
 
-<html>
+<html class="cadastrar">
 <head>
 <title>TAIA</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/normalize.css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<div class="container" style="margin-top: 50px;">
-		<h1 style="text-align: center;">Cadastrar</h1>
-		<form enctype="multipart/form-data" action="adicionaAlunos" method="POST" class="form-horizontal">
+	<div class="container cadastrar-cont">
+		<h2 style="text-align: center;">Cadastrar</h2><br />
+		<form enctype="multipart/form-data" action="adicionaAlunos" method="POST" class="form-horizontal" style="max-width: 900px; margin: 0 auto;">
 			<div class="form-group">
 				<label for="inputNome" class="col-sm-2 control-label">Nome</label>
 				<div class="col-sm-10">
@@ -79,7 +80,7 @@ repositorio.dados.entidades.*"%>
 			<br />
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<input type="submit" class="btn btn-success" value="Cadastrar">
+					<input type="submit" class="btn btn-home btn-success" value="Cadastrar">
 				</div>
 			</div>
 		</form>
