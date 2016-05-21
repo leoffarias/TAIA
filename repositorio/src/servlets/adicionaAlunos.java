@@ -56,19 +56,8 @@ public class adicionaAlunos extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		response.sendRedirect("../cadastrar/preferencias");
 
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<title>TAIA</title>");
-		out.println("<link rel='stylesheet' href='../css/bootstrap.min.css'>");
-		out.println("<link rel='stylesheet' href='../css/main.css'>");
-		out.println("<link rel='stylesheet' href='../css/normalize.css'>");
-		out.println("</head>");
-		out.println("<body style='text-align:center;'>");
-		out.println("<h2>Aluno(a) " + aluno.getNome() + 
-				" adicionado(a) com sucesso</h2>");
-		out.println("<br /><a href='../cadastrar'><button class='btn btn-primary'>Cadastrar outro</button></a>");
-		out.println("</body>");
-		out.println("</html>");
 	}
 }

@@ -2,7 +2,6 @@ package repositorio.dados;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,13 +12,18 @@ import repositorio.dados.entidades.*;
 public class Jaccard {
 
 	private Connection connection;
+	private Buscas buscas;
 
 	public Jaccard() {
 		this.connection = new ConnectionFactory().getConnection();
+		this.buscas = new Buscas();
 	}
 
 	public void calcula(int id, Evento e) throws SQLException {
-		List<Evento> lista = getEventos(id);
+
+		String busca = "SELECT id, tags FROM evento WHERE id != "+id+";";
+		List<Evento> lista = buscas.getEventos(busca);
+
 		String[] tags = e.getTags().split(" ");
 		int nt1 = tags.length;
 
@@ -55,35 +59,10 @@ public class Jaccard {
 		}
 	}
 
-	public List<Evento> getEventos(int id) throws SQLException {
-		String sql = "SELECT id, tags FROM evento WHERE id != "+id+";";
-
-		try {
-			PreparedStatement stmt = connection.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			List<Evento> eventos = new ArrayList<Evento>();
-
-			while (rs.next()) {
-
-				// criando o objeto Contato
-				Evento evento = new Evento();
-				evento.setTags(rs.getString("tags"));
-				evento.setId(Integer.parseInt(rs.getString("id")));
-
-				// adicionando o objeto à lista
-				eventos.add(evento);
-			}
-			rs.close();
-			stmt.close();
-			return eventos;
-
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
 	public void calcula(int id, Materia e) throws SQLException {
-		List<Materia> lista = getMaterias(id);
+		String busca = "SELECT id, tags FROM materia WHERE id != "+id+";";
+		List<Materia> lista = buscas.getMaterias(busca);
+
 		String[] tags = e.getTags().split(" ");
 		int nt1 = tags.length;
 
@@ -119,35 +98,10 @@ public class Jaccard {
 		}
 	} 
 
-	public List<Materia> getMaterias(int id) throws SQLException {
-		String sql = "SELECT id, tags FROM materia WHERE id != "+id+";";
-
-		try {
-			PreparedStatement stmt = connection.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			List<Materia> materias = new ArrayList<Materia>();
-
-			while (rs.next()) {
-
-				// criando o objeto Contato
-				Materia materia = new Materia();
-				materia.setTags(rs.getString("tags"));
-				materia.setId(Integer.parseInt(rs.getString("id")));
-
-				// adicionando o objeto à lista
-				materias.add(materia);
-			}
-			rs.close();
-			stmt.close();
-			return materias;
-
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
 	public void calcula(int id, Estagio e) throws SQLException {
-		List<Estagio> lista = getEstagio(id);
+		String busca = "SELECT id, tags FROM estagio WHERE id != "+id+";";
+		List<Estagio> lista = buscas.getEstagio(busca);
+
 		String[] tags = e.getTags().split(" ");
 		int nt1 = tags.length;
 
@@ -182,32 +136,5 @@ public class Jaccard {
 			connection.close();
 		}
 	} 
-	
-	public List<Estagio> getEstagio(int id) throws SQLException {
-		String sql = "SELECT id, tags FROM estagio WHERE id != "+id+";";
-
-		try {
-			PreparedStatement stmt = connection.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			List<Estagio> estagios = new ArrayList<Estagio>();
-
-			while (rs.next()) {
-
-				// criando o objeto Contato
-				Estagio estagio = new Estagio();
-				estagio.setTags(rs.getString("tags"));
-				estagio.setId(Integer.parseInt(rs.getString("id")));
-
-				// adicionando o objeto à lista
-				estagios.add(estagio);
-			}
-			rs.close();
-			stmt.close();
-			return estagios;
-
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
 
 }
