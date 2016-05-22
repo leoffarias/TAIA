@@ -14,7 +14,7 @@ repositorio.dados.entidades.*"%>
 </head>
 <body>
 	<div class="container cadastrar-cont">
-		<h2 style="text-align: center;">Cadastrar</h2><br />
+		<h2 class="tit" style="text-align: center;">Cadastrar</h2><br />
 		<form enctype="multipart/form-data" action="adicionaAlunos" method="POST" class="form-horizontal" style="max-width: 900px; margin: 0 auto;">
 			<div class="form-group">
 				<label for="inputNome" class="col-sm-2 control-label">Nome</label>

@@ -105,7 +105,7 @@ hr.star-primary:after {
     margin: 0 auto;
 }
 
-.home h2, .cadastrar h2 {
+.tit {
     font-family: 'Open Sans', sans-serif;
     font-weight:300;
 }

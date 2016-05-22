@@ -22,7 +22,7 @@ public class Jaccard {
 	public void calcula(int id, Evento e) throws SQLException {
 
 		String busca = "SELECT id, tags FROM evento WHERE id != "+id+";";
-		List<Evento> lista = buscas.getEventos(busca);
+		List<Evento> lista = buscas.getEventos(busca, "jaccard");
 
 		String[] tags = e.getTags().split(" ");
 		int nt1 = tags.length;
@@ -61,7 +61,7 @@ public class Jaccard {
 
 	public void calcula(int id, Materia e) throws SQLException {
 		String busca = "SELECT id, tags FROM materia WHERE id != "+id+";";
-		List<Materia> lista = buscas.getMaterias(busca);
+		List<Materia> lista = buscas.getMaterias(busca, "jaccard");
 
 		String[] tags = e.getTags().split(" ");
 		int nt1 = tags.length;
@@ -100,7 +100,7 @@ public class Jaccard {
 
 	public void calcula(int id, Estagio e) throws SQLException {
 		String busca = "SELECT id, tags FROM estagio WHERE id != "+id+";";
-		List<Estagio> lista = buscas.getEstagio(busca);
+		List<Estagio> lista = buscas.getEstagio(busca, "jaccard");
 
 		String[] tags = e.getTags().split(" ");
 		int nt1 = tags.length;

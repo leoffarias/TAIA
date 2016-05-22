@@ -17,7 +17,7 @@ public class Buscas {
 		this.connection = new ConnectionFactory().getConnection();
 	}
 
-	public List<Evento> getEventos(String sql) throws SQLException {
+	public List<Evento> getEventos(String sql, String tipo) throws SQLException {
 
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -28,7 +28,12 @@ public class Buscas {
 
 				// criando o objeto Contato
 				Evento evento = new Evento();
+				if(tipo.equals("jaccard")) {
 				evento.setTags(rs.getString("tags"));
+				}
+				else if(tipo.equals("grau")) {
+				evento.setNomeCurto(rs.getString("nome_curto"));
+				}
 				evento.setId(Integer.parseInt(rs.getString("id")));
 
 				// adicionando o objeto à lista
@@ -43,7 +48,7 @@ public class Buscas {
 		}
 	}
 	
-	public List<Materia> getMaterias(String sql) throws SQLException {
+	public List<Materia> getMaterias(String sql, String tipo) throws SQLException {
 
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -54,7 +59,11 @@ public class Buscas {
 
 				// criando o objeto Contato
 				Materia materia = new Materia();
+				if(tipo.equals("jaccard")) {
 				materia.setTags(rs.getString("tags"));
+				} else if (tipo.equals("grau")) {
+				materia.setNomeCurto(rs.getString("nome_curto"));
+				}
 				materia.setId(Integer.parseInt(rs.getString("id")));
 
 				// adicionando o objeto à lista
@@ -69,7 +78,7 @@ public class Buscas {
 		}
 	}
 	
-	public List<Estagio> getEstagio(String sql) throws SQLException {
+	public List<Estagio> getEstagio(String sql, String tipo) throws SQLException {
 
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -80,7 +89,12 @@ public class Buscas {
 
 				// criando o objeto Contato
 				Estagio estagio = new Estagio();
+				if(tipo.equals("jaccard")) {
 				estagio.setTags(rs.getString("tags"));
+				}
+				else if(tipo.equals("grau")) {
+				estagio.setFuncao(rs.getString("funcao"));
+				}
 				estagio.setId(Integer.parseInt(rs.getString("id")));
 
 				// adicionando o objeto à lista
