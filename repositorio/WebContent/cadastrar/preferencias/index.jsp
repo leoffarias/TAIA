@@ -23,12 +23,12 @@ repositorio.dados.entidades.*"%>
 			perfil!</h3>
 		<hr class="star-primary">
 		<br /> <br />
-		<div class="linha">
+		<div class="linha" style="margin-top:5px;">
 		<%
 			Buscas buscas = new Buscas();
 
 			List<Evento> eventos = buscas.getEventos(
-					"SELECT id, nome_curto FROM evento e INNER JOIN (SELECT id_eve FROM usuarios_eventos) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
+					"SELECT id, nome_curto, tags FROM evento e INNER JOIN (SELECT id_eve FROM usuarios_eventos) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
 					"grau");
 
 			for (Evento evento : eventos) {
@@ -43,7 +43,8 @@ repositorio.dados.entidades.*"%>
 			</p>
 			<form action="../cadastraPreferencias" method="POST">
 				<input type="hidden" name="evid" value="<%=evento.getId()%>"> 
-				<input type="hidden" value="usuarios_eventos" name="tipo"> 
+				<input type="hidden" value="usuarios_eventos" name="tipo">
+				<input type="hidden" value="<%=evento.getTags()%>" name="tags"> 
 				<input class="btn btn-success" type="submit" value="Tenho interesse" onClick="this.form.submit(); this.disabled=true; this.value='Interessado'; ">
 			</form>
 			</div>
@@ -53,7 +54,7 @@ repositorio.dados.entidades.*"%>
 			out.println("</div> <div class='linha'>");
 
 			List<Materia> materias = buscas.getMaterias(
-					"SELECT id, nome_curto FROM materia e INNER JOIN (SELECT id_eve FROM usuarios_materias) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
+					"SELECT id, nome_curto, tags FROM materia e INNER JOIN (SELECT id_eve FROM usuarios_materias) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
 					"grau");
 
 			for (Materia materia : materias) {
@@ -69,7 +70,8 @@ repositorio.dados.entidades.*"%>
 			</p>
 			<form action="../cadastraPreferencias" method="POST">
 				<input type="hidden" name="evid" value="<%=materia.getId()%>"> 
-				<input type="hidden" value="usuarios_materias" name="tipo"> 
+				<input type="hidden" value="usuarios_materias" name="tipo">
+				<input type="hidden" value="<%=materia.getTags()%>" name="tags"> 
 				<input class="btn btn-success" type="submit" value="Tenho interesse" onClick="this.form.submit(); this.disabled=true; this.value='Interessado'; ">
 			</form>
 		</div>
@@ -80,7 +82,7 @@ repositorio.dados.entidades.*"%>
 			out.println("</div> <div class='linha'>");
 
 			List<Estagio> estagios = buscas.getEstagio(
-					"SELECT id, funcao FROM estagio e INNER JOIN (SELECT id_eve FROM usuarios_estagio) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
+					"SELECT id, funcao, tags FROM estagio e INNER JOIN (SELECT id_eve FROM usuarios_estagio) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
 					"grau");
 
 			for (Estagio estagio : estagios) {
@@ -96,6 +98,7 @@ repositorio.dados.entidades.*"%>
 			<form action="../cadastraPreferencias" method="POST">
 				<input type="hidden" name="evid" value="<%=estagio.getId()%>"> 
 				<input type="hidden" value="usuarios_estagio" name="tipo"> 
+				<input type="hidden" value="<%=estagio.getTags()%>" name="tags"> 
 				<input class="btn btn-success" type="submit" value="Tenho interesse" onClick="this.form.submit(); this.disabled=true; this.value='Interessado'; ">
 			</form>
 		</div>

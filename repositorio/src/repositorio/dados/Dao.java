@@ -340,4 +340,19 @@ public class Dao {
 		           connection.close();
 	         }
 		}
+	  
+	  public void modificaAluno(int userid, String tags) throws SQLException {
+		  String sql = "UPDATE aluno SET tags = '"+tags+"' WHERE id = "+userid+";";
+		    try {
+		        PreparedStatement stmt = connection.prepareStatement(sql); 
+
+		        stmt.execute();
+		    	stmt.close();
+		    	
+		    } catch (SQLException e) {
+		        throw new RuntimeException(e);
+		    } finally {
+		           connection.close();
+	         }
+		}
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import repositorio.dados.entidades.*;
 
 public class Buscas {
-	
+
 	private Connection connection;
 
 	public Buscas() {
@@ -28,13 +28,11 @@ public class Buscas {
 
 				// criando o objeto Contato
 				Evento evento = new Evento();
-				if(tipo.equals("jaccard")) {
-				evento.setTags(rs.getString("tags"));
-				}
-				else if(tipo.equals("grau")) {
-				evento.setNomeCurto(rs.getString("nome_curto"));
+				if(tipo.equals("grau")) {
+					evento.setNomeCurto(rs.getString("nome_curto"));
 				}
 				evento.setId(Integer.parseInt(rs.getString("id")));
+				evento.setTags(rs.getString("tags"));
 
 				// adicionando o objeto à lista
 				eventos.add(evento);
@@ -47,7 +45,7 @@ public class Buscas {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public List<Materia> getMaterias(String sql, String tipo) throws SQLException {
 
 		try {
@@ -59,12 +57,11 @@ public class Buscas {
 
 				// criando o objeto Contato
 				Materia materia = new Materia();
-				if(tipo.equals("jaccard")) {
-				materia.setTags(rs.getString("tags"));
-				} else if (tipo.equals("grau")) {
-				materia.setNomeCurto(rs.getString("nome_curto"));
+				if (tipo.equals("grau")) {
+					materia.setNomeCurto(rs.getString("nome_curto"));
 				}
 				materia.setId(Integer.parseInt(rs.getString("id")));
+				materia.setTags(rs.getString("tags"));
 
 				// adicionando o objeto à lista
 				materias.add(materia);
@@ -77,7 +74,7 @@ public class Buscas {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public List<Estagio> getEstagio(String sql, String tipo) throws SQLException {
 
 		try {
@@ -89,13 +86,11 @@ public class Buscas {
 
 				// criando o objeto Contato
 				Estagio estagio = new Estagio();
-				if(tipo.equals("jaccard")) {
-				estagio.setTags(rs.getString("tags"));
-				}
-				else if(tipo.equals("grau")) {
-				estagio.setFuncao(rs.getString("funcao"));
+				if(tipo.equals("grau")) {
+					estagio.setFuncao(rs.getString("funcao"));
 				}
 				estagio.setId(Integer.parseInt(rs.getString("id")));
+				estagio.setTags(rs.getString("tags"));
 
 				// adicionando o objeto à lista
 				estagios.add(estagio);
@@ -103,6 +98,24 @@ public class Buscas {
 			rs.close();
 			stmt.close();
 			return estagios;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public Aluno getAluno(String sql) throws SQLException {
+
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			Aluno aluno = new Aluno();
+			while (rs.next()) {
+				aluno.setTags(rs.getString("tags"));
+			}
+			rs.close();
+			stmt.close();
+			return aluno;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
