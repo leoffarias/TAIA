@@ -5,12 +5,14 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import repositorio.dados.Dao;
@@ -52,7 +54,9 @@ public class adicionaAlunos extends HttpServlet {
 		// salva o contato
 		Dao dao = new Dao();
 		try {
-			dao.adiciona(aluno);
+			int userid = dao.adiciona(aluno);
+			HttpSession session = request.getSession();
+			session.setAttribute("userid", userid);  
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

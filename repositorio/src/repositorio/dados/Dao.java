@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import repositorio.dados.entidades.*;
 
 public class Dao {
@@ -251,7 +253,7 @@ public class Dao {
 	         }
 		}
 	  
-	  public void adiciona(Aluno aluno) throws SQLException {
+	  public int adiciona(Aluno aluno) throws SQLException {
 		    String sql = "insert into aluno " +
 		            "(nome,id_univ,id_curso, foto, email, senha)" +
 		            " values (?,?,?,?,?,?)";
@@ -266,7 +268,15 @@ public class Dao {
 		        stmt.setString(6,aluno.getSenha());
 
 		        stmt.execute();
-		        stmt.close();
+		        
+		    	ResultSet id = stmt.executeQuery("select last_insert_id() as last_id");
+		    	int lastId = -1;
+		    	while (id.next()) {
+		    	lastId = id.getInt(1);
+		    	}
+		    	stmt.close();
+		    	return lastId;
+		    	
 		    } catch (SQLException e) {
 		        throw new RuntimeException(e);
 		    } finally {
@@ -303,6 +313,27 @@ public class Dao {
 		    	
 		    	Jaccard j = new Jaccard();
 		    	j.calcula(lastId, estagio);
+		    } catch (SQLException e) {
+		        throw new RuntimeException(e);
+		    } finally {
+		           connection.close();
+	         }
+		}
+	  
+	  public void adicionaAresta(int userid, int evid, String sql) throws SQLException {
+
+
+		    try {
+		        PreparedStatement stmt = connection.prepareStatement(sql);
+
+		        stmt.setInt(1,userid);
+		        stmt.setInt(2,evid);
+		        stmt.setInt(3,1);
+		        stmt.setDouble(4,0.0);       
+
+		        stmt.execute();
+		    	stmt.close();
+		    	
 		    } catch (SQLException e) {
 		        throw new RuntimeException(e);
 		    } finally {

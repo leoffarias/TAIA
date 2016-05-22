@@ -23,7 +23,7 @@ repositorio.dados.entidades.*"%>
 			perfil!</h3>
 		<hr class="star-primary">
 		<br /> <br />
-
+		<div class="linha">
 		<%
 			Buscas buscas = new Buscas();
 
@@ -40,34 +40,47 @@ repositorio.dados.entidades.*"%>
 				<%
 					out.println(evento.getNomeCurto());
 				%>
-				<form action="../cadastraPreferencias" method="POST">
-					<input class="btn btn-success" type="submit" value="Tenho interesse" onClick="this.form.submit(); this.disabled=true; this.value='Interessado'; ">
-				</form>
 			</p>
-		</div>
+			<form action="../cadastraPreferencias" method="POST">
+				<input type="hidden" name="evid" value="<%=evento.getId()%>"> 
+				<input type="hidden" value="usuarios_eventos" name="tipo"> 
+				<input class="btn btn-success" type="submit" value="Tenho interesse" onClick="this.form.submit(); this.disabled=true; this.value='Interessado'; ">
+			</form>
+			</div>
 		<%
 			}
+			
+			out.println("</div> <div class='linha'>");
 
 			List<Materia> materias = buscas.getMaterias(
-					"SELECT id, nome_curto FROM materia e INNER JOIN (SELECT id_mat FROM usuarios_materias) AS e2 ON e.id = e2.id_mat GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
+					"SELECT id, nome_curto FROM materia e INNER JOIN (SELECT id_eve FROM usuarios_materias) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
 					"grau");
 
 			for (Materia materia : materias) {
 		%>
 		<div class="col-sm-4">
 			<img src="../../materia/img/<%=materia.getId()%>" width="200"
-				height="200" /> <!-- TEM QUE AJEITAR -->
+				height="200" />
+			<!-- TEM QUE AJEITAR -->
 			<p>
 				<%
 					out.println(materia.getNomeCurto());
 				%>
 			</p>
+			<form action="../cadastraPreferencias" method="POST">
+				<input type="hidden" name="evid" value="<%=materia.getId()%>"> 
+				<input type="hidden" value="usuarios_materias" name="tipo"> 
+				<input class="btn btn-success" type="submit" value="Tenho interesse" onClick="this.form.submit(); this.disabled=true; this.value='Interessado'; ">
+			</form>
 		</div>
+
 		<%
 			}
+			
+			out.println("</div> <div class='linha'>");
 
 			List<Estagio> estagios = buscas.getEstagio(
-					"SELECT id, funcao FROM estagio e INNER JOIN (SELECT id_est FROM usuarios_estagio) AS e2 ON e.id = e2.id_est GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
+					"SELECT id, funcao FROM estagio e INNER JOIN (SELECT id_eve FROM usuarios_estagio) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
 					"grau");
 
 			for (Estagio estagio : estagios) {
@@ -80,10 +93,16 @@ repositorio.dados.entidades.*"%>
 					out.println(estagio.getFuncao());
 				%>
 			</p>
+			<form action="../cadastraPreferencias" method="POST">
+				<input type="hidden" name="evid" value="<%=estagio.getId()%>"> 
+				<input type="hidden" value="usuarios_estagio" name="tipo"> 
+				<input class="btn btn-success" type="submit" value="Tenho interesse" onClick="this.form.submit(); this.disabled=true; this.value='Interessado'; ">
+			</form>
 		</div>
 		<%
 			}
 		%>
+	 </div>
 	</div>
 </body>
 

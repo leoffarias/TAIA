@@ -117,3 +117,9 @@ hr.star-primary:after {
 .novo:hover {
     text-decoration:underline;
 }
+
+.linha {
+	overflow:hidden;
+	clear:both;
+	margin-top:60px;
+}
