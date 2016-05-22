@@ -40,6 +40,9 @@ repositorio.dados.entidades.*"%>
 				<%
 					out.println(evento.getNomeCurto());
 				%>
+				<form action="../cadastraPreferencias" method="POST">
+					<input class="btn btn-success" type="submit" value="Tenho interesse" onClick="this.form.submit(); this.disabled=true; this.value='Interessado'; ">
+				</form>
 			</p>
 		</div>
 		<%
