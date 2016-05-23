@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -56,7 +58,13 @@ public class adicionaAlunos extends HttpServlet {
 		try {
 			int userid = dao.adiciona(aluno);
 			HttpSession session = request.getSession();
-			session.setAttribute("userid", userid);  
+			session.setAttribute("userid", userid);
+			/*List<Evento> atEvento = new ArrayList<Evento>();
+			List<Estagio> atEstagio = new ArrayList<Estagio>();
+			List<Materia> atMateria = new ArrayList<Materia>();
+			session.setAttribute("atEvento", atEvento);
+			session.setAttribute("atEstagio", atEstagio);
+			session.setAttribute("atMateria", atMateria);*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import repositorio.dados.CN;
 import repositorio.dados.Dao;
 import repositorio.dados.entidades.*;
 
@@ -24,6 +25,13 @@ public class FinalizaCadastro extends HttpServlet {
 			HttpServletResponse response)
 					throws IOException, ServletException {
 		
+		CN at = new CN();
+		try {
+			at.atualizaCN(45, "metricas_eventos");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		response.sendRedirect("../home");
 
 	}
