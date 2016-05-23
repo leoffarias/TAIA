@@ -16,6 +16,7 @@ repositorio.dados.entidades.*"%>
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
+	<header class="conhecer"></header>
 	<div class="container" style="text-align: center; margin-top: 50px;">
 		<h2 class="tit">Queremos te conhecer melhor!</h2>
 		<h3 class="tit">Encontre eventos, matérias e oportunidades de
@@ -107,6 +108,8 @@ repositorio.dados.entidades.*"%>
 			}
 		%>
 	 </div>
+	 <br /><br />
+	 <a href="../finalizaCadastro"><button style="float:right; margin-bottom:15px;" class="btn btn-info">Finalizar cadastro</button></a>
 	</div>
 </body>
 

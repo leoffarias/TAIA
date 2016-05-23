@@ -123,3 +123,8 @@ hr.star-primary:after {
 	clear:both;
 	margin-top:60px;
 }
+
+.conhecer {
+	height:350px;
+	background: url('../img/capa-conhecer.jpg') no-repeat fixed; 
+}
