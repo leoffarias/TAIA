@@ -27,7 +27,7 @@ public class FinalizaCadastro extends HttpServlet {
 		
 		CN at = new CN();
 		try {
-			at.atualizaCN(45, "metricas_eventos");
+			at.atualizaCN(45, "metricas_eventos", "usuarios_eventos");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

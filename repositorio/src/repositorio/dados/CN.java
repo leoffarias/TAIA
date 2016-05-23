@@ -15,7 +15,7 @@ public class CN {
 		this.connection = new ConnectionFactory().getConnection();
 	}
 
-	public List<Integer> ligacoes(int id, String tabela) throws SQLException {
+	public List<Integer> ligacoesEv(int id, String tabela) throws SQLException {
 		List<Integer> eventos = new ArrayList<Integer>();
 		String sql = "SELECT id_evento1, id_evento2 FROM "+tabela+" WHERE id_evento1 = "+id+" OR id_evento2 = "+id+";";
 		PreparedStatement stmt = connection.prepareStatement(sql);
@@ -36,14 +36,30 @@ public class CN {
 		stmt.close();
 		return eventos;
 	}
+	
+	public List<Integer> ligacoesUsu(int id, String tabela) throws SQLException {
+		List<Integer> eventos = new ArrayList<Integer>();
+		String sql = "SELECT id_usu FROM "+tabela+" WHERE id_eve = "+id+" AND peso = 1;";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
 
-	public void calcula(int id_ev1, List<Integer> eventos1, int id_ev2, String tabela) throws SQLException {
+		while (rs.next()) {
+			int usu = rs.getInt("id_usu");
+				eventos.add(usu);
 
-		List<Integer> eventos2 = ligacoes(id_ev2, tabela);
+		}
+		rs.close();
+		stmt.close();
+		return eventos;
+	}
+
+	public void calcula(int id_ev1, List<Integer> eventos1, int id_ev2, String tabelaEv, String tabelaUsu) throws SQLException {
+		
+		List<Integer> eventos2 = ligacoesUsu(id_ev2, tabelaUsu);
 		eventos2.retainAll(eventos1);
 		int cn = eventos2.size();
 
-		String sql = "UPDATE "+tabela+" SET cn = '"+cn+"' WHERE id_evento1 = "+id_ev1+" AND id_evento2 = "+id_ev2+";";
+		String sql = "UPDATE "+tabelaEv+" SET cn = '"+cn+"' WHERE id_evento1 = "+id_ev1+" AND id_evento2 = "+id_ev2+";";
 
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -54,11 +70,12 @@ public class CN {
 		}
 	}
 
-	public void atualizaCN(int id, String tabela) throws SQLException {
-		List<Integer> eventos1 = ligacoes(id, tabela);
+	public void atualizaCN(int id, String tabelaEv, String tabelaUsu) throws SQLException {
+		List<Integer> eventos1 = ligacoesEv(id, tabelaEv);
+		List<Integer> eventosUsu = ligacoesUsu(id, tabelaUsu);
 
 		for(int i = 0; i < eventos1.size(); i++) {
-			calcula(id, eventos1, eventos1.get(i),tabela);
+			calcula(id, eventosUsu, eventos1.get(i), tabelaEv, tabelaUsu);
 		}
 		
 		connection.close();
