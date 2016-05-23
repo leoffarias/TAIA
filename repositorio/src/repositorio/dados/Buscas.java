@@ -31,7 +31,7 @@ public class Buscas {
 				if(tipo.equals("grau")) {
 					evento.setNomeCurto(rs.getString("nome_curto"));
 				}
-				evento.setId(Integer.parseInt(rs.getString("id")));
+				evento.setId(rs.getInt("id"));
 				evento.setTags(rs.getString("tags"));
 
 				// adicionando o objeto à lista
@@ -59,8 +59,9 @@ public class Buscas {
 				Materia materia = new Materia();
 				if (tipo.equals("grau")) {
 					materia.setNomeCurto(rs.getString("nome_curto"));
+					materia.setIdUniv(rs.getInt("id_univ"));
 				}
-				materia.setId(Integer.parseInt(rs.getString("id")));
+				materia.setId(rs.getInt("id"));
 				materia.setTags(rs.getString("tags"));
 
 				// adicionando o objeto à lista
@@ -89,7 +90,7 @@ public class Buscas {
 				if(tipo.equals("grau")) {
 					estagio.setFuncao(rs.getString("funcao"));
 				}
-				estagio.setId(Integer.parseInt(rs.getString("id")));
+				estagio.setId(rs.getInt("id"));
 				estagio.setTags(rs.getString("tags"));
 
 				// adicionando o objeto à lista

@@ -171,7 +171,7 @@ public class Dao {
 		            // criando o objeto Contato
 		            Area area = new Area();
 		            area.setNome(rs.getString("nome"));
-		            area.setId(Integer.parseInt(rs.getString("id")));
+		            area.setId(rs.getInt("id"));
 
 		            // adicionando o objeto à lista
 		            areas.add(area);
@@ -203,7 +203,7 @@ public class Dao {
 		            // criando o objeto Contato
 		            Curso curso = new Curso();
 		            curso.setNome(rs.getString("nome"));
-		            curso.setId(Integer.parseInt(rs.getString("id")));
+		            curso.setId(rs.getInt("id"));
 
 		            // adicionando o objeto à lista
 		            cursos.add(curso);
@@ -235,7 +235,7 @@ public class Dao {
 		            // criando o objeto Contato
 		        	Universidade univ = new Universidade();
 		            univ.setNome(rs.getString("nome"));
-		            univ.setId(Integer.parseInt(rs.getString("id")));
+		            univ.setId(rs.getInt("id"));
 
 		            // adicionando o objeto à lista
 		            univs.add(univ);

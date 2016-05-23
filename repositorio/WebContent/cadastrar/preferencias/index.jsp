@@ -24,6 +24,7 @@ repositorio.dados.entidades.*"%>
 		<hr class="star-primary">
 		<br /> <br />
 		<div class="linha" style="margin-top:5px;">
+		<h3 class="tit">Eventos</h3><br />
 		<%
 			Buscas buscas = new Buscas();
 
@@ -51,16 +52,16 @@ repositorio.dados.entidades.*"%>
 		<%
 			}
 			
-			out.println("</div> <div class='linha'>");
+			out.println("</div> <div class='linha'><h3 class='tit'>Matérias</h3><br />");
 
 			List<Materia> materias = buscas.getMaterias(
-					"SELECT id, nome_curto, tags FROM materia e INNER JOIN (SELECT id_eve FROM usuarios_materias) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
+					"SELECT id, nome_curto, tags, id_univ FROM materia e INNER JOIN (SELECT id_eve FROM usuarios_materias) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
 					"grau");
 
 			for (Materia materia : materias) {
 		%>
 		<div class="col-sm-4">
-			<img src="../../materia/img/<%=materia.getId()%>" width="200"
+			<img src="../../univ/img/<%=materia.getIdUniv()%>" width="200"
 				height="200" />
 			<!-- TEM QUE AJEITAR -->
 			<p>
@@ -79,7 +80,7 @@ repositorio.dados.entidades.*"%>
 		<%
 			}
 			
-			out.println("</div> <div class='linha'>");
+			out.println("</div> <div class='linha'><h3 class='tit'>Estágio</h3><br />");
 
 			List<Estagio> estagios = buscas.getEstagio(
 					"SELECT id, funcao, tags FROM estagio e INNER JOIN (SELECT id_eve FROM usuarios_estagio) AS e2 ON e.id = e2.id_eve GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 6",
