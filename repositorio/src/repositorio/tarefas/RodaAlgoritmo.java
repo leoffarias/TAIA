@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 
 import repositorio.dados.CN;
+import repositorio.dados.Jaccard;
 
 
 @WebServlet("/rodaAlgoritmo")
@@ -29,11 +30,11 @@ public class RodaAlgoritmo extends HttpServlet {
 		List<Integer> attEv = (ArrayList<Integer>) session.getAttribute("attEv");
 		List<Integer> attEst = (ArrayList<Integer>) session.getAttribute("attEst");
 		List<Integer> attMat = (ArrayList<Integer>) session.getAttribute("attMat");
+		List<Integer> attAlu = (ArrayList<Integer>) session.getAttribute("attAlu");
 		CN cn = new CN();
 		
 		for(int i = 0; i < attEv.size(); i++) {
 			try {
-				System.out.println("Agora: "+attEv.get(i));
 				cn.atualizaCN(attEv.get(i), "metricas_eventos", "usuarios_eventos");
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -51,6 +52,18 @@ public class RodaAlgoritmo extends HttpServlet {
 		for(int i = 0; i < attMat.size(); i++) {
 			try {
 				cn.atualizaCN(attMat.get(i), "metricas_materia", "usuarios_materias");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		Jaccard j = new Jaccard();
+		for(int i = 0; i < attAlu.size(); i++) {
+			try {
+				int id = attAlu.get(i);
+				j.atualizaEv(id);
+				j.atualizaMat(id);
+				j.atualizaEst(id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

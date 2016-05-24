@@ -60,11 +60,13 @@ public class adicionaAlunos extends HttpServlet {
 			List<Integer> attEv = new ArrayList<Integer>();
 			List<Integer> attEst = new ArrayList<Integer>();
 			List<Integer> attMat = new ArrayList<Integer>();
+			List<Integer> attAlu = new ArrayList<Integer>();
 			HttpSession session = request.getSession();
 			session.setAttribute("userid", userid);
 			session.setAttribute("attEv", attEv);
 			session.setAttribute("attEst", attEst);
 			session.setAttribute("attMat", attMat);
+			session.setAttribute("attAlu", attAlu);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

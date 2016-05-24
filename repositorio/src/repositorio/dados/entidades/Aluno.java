@@ -11,6 +11,7 @@ public class Aluno {
 		private String tags;
 		private String email;
 		private String senha;
+		private int id;
 		
 		public String getEmail() {
 			return email;
@@ -53,6 +54,12 @@ public class Aluno {
 		}
 		public void setFoto(InputStream inputStream) {
 			this.foto = inputStream;
+		}
+		public void setId(int id) {
+			this.id	= id;
+		}
+		public int getId() {
+			return this.id;
 		}
 
 }

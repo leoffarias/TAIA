@@ -31,30 +31,29 @@ public class CadastraPreferencias extends HttpServlet {
 		String tipo = request.getParameter("tipo");
 		HttpSession session = request.getSession();
 		int userid = (int) session.getAttribute("userid");
-		String sql = "insert into "+tipo+
-				" (id_usu, id_eve, peso, jaccard)" +
-				" values (?,?,?,?)";
+
+		String sql = "INSERT INTO "+tipo+" (id_usu, id_eve, peso, jaccard) VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE peso=1;";
 		Dao dao = new Dao();
 		try {
 			dao.adicionaAresta(userid, evid, sql);
 			if(tipo.equals("usuarios_eventos")) {
 				synchronized(this){
-				List<Integer> attEv = (ArrayList<Integer>) session.getAttribute("attEv");
-				attEv.add(evid);
-				session.setAttribute("attEv", attEv);
+					List<Integer> attEv = (ArrayList<Integer>) session.getAttribute("attEv");
+					attEv.add(evid);
+					session.setAttribute("attEv", attEv);
 				}
 			}
 			else if (tipo.equals("usuarios_materias")) {
 				synchronized(this){
-				List<Integer> attMat = (ArrayList<Integer>) session.getAttribute("attMat");
-				attMat.add(evid);
-				session.setAttribute("attMat", attMat);
+					List<Integer> attMat = (ArrayList<Integer>) session.getAttribute("attMat");
+					attMat.add(evid);
+					session.setAttribute("attMat", attMat);
 				}
 			} else {
 				synchronized(this){
-				List<Integer> attEst = (ArrayList<Integer>) session.getAttribute("attEst");
-				attEst.add(evid);
-				session.setAttribute("attEst", attEst);
+					List<Integer> attEst = (ArrayList<Integer>) session.getAttribute("attEst");
+					attEst.add(evid);
+					session.setAttribute("attEst", attEst);
 				}
 			}
 		} catch (SQLException e) {
@@ -63,9 +62,9 @@ public class CadastraPreferencias extends HttpServlet {
 
 		//Pegar as tags do usuario e do evento, misturar e colocar no usuario
 		String tagsEve = request.getParameter("tags");
-		String[] tags = tagsEve.split(" ");
+
 		Buscas buscas = new Buscas();
-		String sql2 = "SELECT tags FROM aluno WHERE id = "+userid+";";
+		String sql2 = "SELECT id, tags FROM aluno WHERE id = "+userid+";";
 		Aluno aluno = null;
 		try {
 			aluno = buscas.getAluno(sql2);
@@ -73,22 +72,32 @@ public class CadastraPreferencias extends HttpServlet {
 			e1.printStackTrace();
 		}
 		String tagsUsu = aluno.getTags();
+		boolean mudou;
 		if(tagsUsu == null) {
-			tagsUsu = "";
-		}
-
-		//Ver se já tem
-		boolean mudou = false;
-		for(int i = 0; i < tags.length; i++) {
-			if (tagsUsu.indexOf(tags[i]) < 0) {
-				tagsUsu = tagsUsu+" "+tags[i];
-				mudou = true;
+			tagsUsu = tagsEve;
+			mudou = true;
+		} else {
+			String[] tags = tagsEve.split(" ");
+			//Ver se já tem
+			mudou = false;
+			for(int i = 0; i < tags.length; i++) {
+				if (tagsUsu.indexOf(tags[i]) < 0) {
+					tagsUsu = tagsUsu+" "+tags[i];
+					mudou = true;
+				}
 			}
 		}
 
 		//Insere no bd
 		if (mudou) {
 			try {
+				//Coloca o aluno na lista pra atualizar jaccard
+				List<Integer> attAlu = (ArrayList<Integer>) session.getAttribute("attAlu");
+				if(!attAlu.contains(userid)) {
+					attAlu.add(userid);
+					session.setAttribute("attAlu", attAlu);
+				}
+				//modifica a tag
 				dao = new Dao();
 				dao.modificaAluno(userid, tagsUsu);
 			} catch (SQLException e) {
