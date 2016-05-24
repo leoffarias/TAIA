@@ -57,14 +57,15 @@ public class adicionaAlunos extends HttpServlet {
 		Dao dao = new Dao();
 		try {
 			int userid = dao.adiciona(aluno);
+			List<Integer> attEv = new ArrayList<Integer>();
+			List<Integer> attEst = new ArrayList<Integer>();
+			List<Integer> attMat = new ArrayList<Integer>();
 			HttpSession session = request.getSession();
 			session.setAttribute("userid", userid);
-			/*List<Evento> atEvento = new ArrayList<Evento>();
-			List<Estagio> atEstagio = new ArrayList<Estagio>();
-			List<Materia> atMateria = new ArrayList<Materia>();
-			session.setAttribute("atEvento", atEvento);
-			session.setAttribute("atEstagio", atEstagio);
-			session.setAttribute("atMateria", atMateria);*/
+			session.setAttribute("attEv", attEv);
+			session.setAttribute("attEst", attEst);
+			session.setAttribute("attMat", attMat);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

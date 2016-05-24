@@ -69,7 +69,7 @@ public class Jaccard {
 		List<String> aList = new ArrayList<String>(Arrays.asList(tags));
 
 		String sql = "insert into metricas_materia " +
-				"(id_materia1, id_materia2, jaccard, cn)" +
+				"(id_evento1, id_evento2, jaccard, cn)" +
 				" values (?,?,?,?)";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class Jaccard {
 		List<String> aList = new ArrayList<String>(Arrays.asList(tags));
 
 		String sql = "insert into metricas_estagio " +
-				"(id_estagio1, id_estagio2, jaccard, cn)" +
+				"(id_evento1, id_evento2, jaccard, cn)" +
 				" values (?,?,?,?)";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);

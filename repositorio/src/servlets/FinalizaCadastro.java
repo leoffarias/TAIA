@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -25,13 +27,6 @@ public class FinalizaCadastro extends HttpServlet {
 			HttpServletResponse response)
 					throws IOException, ServletException {
 		
-		CN at = new CN();
-		try {
-			at.atualizaCN(45, "metricas_eventos", "usuarios_eventos");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		response.sendRedirect("../home");
 
 	}

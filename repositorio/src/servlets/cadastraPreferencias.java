@@ -37,10 +37,30 @@ public class CadastraPreferencias extends HttpServlet {
 		Dao dao = new Dao();
 		try {
 			dao.adicionaAresta(userid, evid, sql);
+			if(tipo.equals("usuarios_eventos")) {
+				synchronized(this){
+				List<Integer> attEv = (ArrayList<Integer>) session.getAttribute("attEv");
+				attEv.add(evid);
+				session.setAttribute("attEv", attEv);
+				}
+			}
+			else if (tipo.equals("usuarios_materias")) {
+				synchronized(this){
+				List<Integer> attMat = (ArrayList<Integer>) session.getAttribute("attMat");
+				attMat.add(evid);
+				session.setAttribute("attMat", attMat);
+				}
+			} else {
+				synchronized(this){
+				List<Integer> attEst = (ArrayList<Integer>) session.getAttribute("attEst");
+				attEst.add(evid);
+				session.setAttribute("attEst", attEst);
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		//Pegar as tags do usuario e do evento, misturar e colocar no usuario
 		String tagsEve = request.getParameter("tags");
 		String[] tags = tagsEve.split(" ");
@@ -54,7 +74,7 @@ public class CadastraPreferencias extends HttpServlet {
 		}
 		String tagsUsu = aluno.getTags();
 		if(tagsUsu == null) {
-		tagsUsu = "";
+			tagsUsu = "";
 		}
 
 		//Ver se já tem
@@ -65,7 +85,7 @@ public class CadastraPreferencias extends HttpServlet {
 				mudou = true;
 			}
 		}
-		
+
 		//Insere no bd
 		if (mudou) {
 			try {
