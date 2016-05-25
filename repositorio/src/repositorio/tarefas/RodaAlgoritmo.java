@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import repositorio.dados.AA;
 import repositorio.dados.CN;
 import repositorio.dados.Jaccard;
 
@@ -58,12 +58,14 @@ public class RodaAlgoritmo extends HttpServlet {
 		}
 		
 		Jaccard j = new Jaccard();
+		AA aa = new AA();
 		for(int i = 0; i < attAlu.size(); i++) {
 			try {
 				int id = attAlu.get(i);
 				j.atualizaEv(id);
 				j.atualizaMat(id);
 				j.atualizaEst(id);
+				aa.atualizaAA(id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
