@@ -105,14 +105,19 @@ public class Buscas {
 		}
 	}
 
-	public Aluno getAluno(String sql) throws SQLException {
+	public Aluno getAluno(String sql, String tipo) throws SQLException {
 
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			Aluno aluno = new Aluno();
 			while (rs.next()) {
+				if(tipo == "user") {
+				aluno.setNome(rs.getString("nome"));
+				aluno.setId(rs.getInt("id"));
+				} else {
 				aluno.setTags(rs.getString("tags"));
+				}
 			}
 			rs.close();
 			stmt.close();

@@ -22,7 +22,7 @@ public class Jaccard {
 	public void atualizaEv(int idUsu) throws SQLException {
 		String busca = "SELECT id, tags FROM evento";
 		List<Evento> lista = buscas.getEventos(busca, "jaccard");
-		String tagsUsu = buscas.getAluno("SELECT tags FROM aluno WHERE id =" + idUsu).getTags();
+		String tagsUsu = buscas.getAluno("SELECT tags FROM aluno WHERE id =" + idUsu, "jaccard").getTags();
 		String[] tags = tagsUsu.split(" ");
 		int nt1 = tags.length;
 
@@ -48,7 +48,7 @@ public class Jaccard {
 	public void atualizaMat(int idUsu) throws SQLException {
 		String busca = "SELECT id, tags FROM materia";
 		List<Materia> lista = buscas.getMaterias(busca, "jaccard");
-		String tagsUsu = buscas.getAluno("SELECT tags FROM aluno WHERE id =" + idUsu).getTags();
+		String tagsUsu = buscas.getAluno("SELECT tags FROM aluno WHERE id =" + idUsu, "jaccard").getTags();
 		String[] tags = tagsUsu.split(" ");
 		int nt1 = tags.length;
 
@@ -74,7 +74,7 @@ public class Jaccard {
 	public void atualizaEst(int idUsu) throws SQLException {
 		String busca = "SELECT id, tags FROM estagio";
 		List<Estagio> lista = buscas.getEstagio(busca, "jaccard");
-		String tagsUsu = buscas.getAluno("SELECT tags FROM aluno WHERE id =" + idUsu).getTags();
+		String tagsUsu = buscas.getAluno("SELECT tags FROM aluno WHERE id =" + idUsu, "jaccard").getTags();
 		String[] tags = tagsUsu.split(" ");
 		int nt1 = tags.length;
 

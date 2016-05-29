@@ -67,7 +67,7 @@ public class CadastraPreferencias extends HttpServlet {
 		String sql2 = "SELECT id, tags FROM aluno WHERE id = "+userid+";";
 		Aluno aluno = null;
 		try {
-			aluno = buscas.getAluno(sql2);
+			aluno = buscas.getAluno(sql2, "jaccard");
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
