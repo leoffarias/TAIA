@@ -32,6 +32,7 @@
 	border: none;
 	outline: none;
 	background: transparent;
+	z-index:9999;
 }
 
 .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus

@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
 		String senha = request.getParameter("senha");
 
 		Buscas buscas = new Buscas();
-		String sql2 = "SELECT id, nome, id_univ FROM aluno WHERE email = '"+email+"' AND senha = '"+senha+"';";
+		String sql2 = "SELECT id, nome, id_univ, id_curso FROM aluno WHERE email = '"+email+"' AND senha = '"+senha+"';";
 		Aluno aluno = null;
 		try {
 			aluno = buscas.getAluno(sql2, "user");
@@ -46,6 +46,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("nome", aluno.getNome());
 			session.setAttribute("userid", aluno.getId());
 			session.setAttribute("iduniv", aluno.getIdUniv());
+			session.setAttribute("idcurso", aluno.getIdCurso());
 			
 			//Tentar colocar quando inicia o sistema
 			List<Integer> attEv = new ArrayList<Integer>();

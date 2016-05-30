@@ -32,6 +32,7 @@ repositorio.dados.entidades.*"%>
 				<%
 					Buscas buscas = new Buscas();
 					Integer userid = (Integer) session.getAttribute("userid");
+					Integer idcurso = (Integer) session.getAttribute("idcurso");
 					List<Evento> eventos = buscas.getEventos(
 							"SELECT e.id, e.nome_curto FROM evento e INNER JOIN usuarios_eventos u ON e.id = u.id_eve WHERE u.id_usu = "
 									+ userid + " AND peso = 0 ORDER BY jaccard DESC LIMIT 3",
@@ -59,7 +60,7 @@ repositorio.dados.entidades.*"%>
 						}
 					List<Estagio> estagios = buscas.getEstagio(
 							"SELECT e.id, e.funcao, e.empresa FROM estagio e INNER JOIN usuarios_estagio u ON e.id = u.id_eve WHERE u.id_usu = "
-									+ userid + " AND peso = 0 ORDER BY jaccard DESC LIMIT 3",
+									+ userid + " AND peso = 0 AND e.id_curso = "+idcurso+" ORDER BY jaccard DESC LIMIT 3",
 							"rec");
 					for (Estagio estagio : estagios) {					
 					%>

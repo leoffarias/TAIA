@@ -155,6 +155,7 @@ public class Buscas {
 					aluno.setNome(rs.getString("nome"));
 					aluno.setId(rs.getInt("id"));
 					aluno.setIdUniv(rs.getInt("id_univ"));
+					aluno.setIdCurso(rs.getInt("id_curso"));
 				} else {
 					aluno.setTags(rs.getString("tags"));
 				}

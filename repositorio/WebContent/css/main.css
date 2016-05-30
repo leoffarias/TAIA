@@ -141,3 +141,10 @@ hr.star-primary:after {
 	height:200px;
 	margin-bottom:5px;
 }
+
+.voltar {
+	line-height: 75px;
+    margin-left: 20px;
+    font-size: 1.2em;
+    color: white;
+}

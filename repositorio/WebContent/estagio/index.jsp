@@ -18,7 +18,7 @@ repositorio.dados.entidades.*"%>
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
-	<nav></nav>
+	<nav><a href="../home" class="voltar">< Voltar</a></nav>
 	<%
 		Buscas buscas = new Buscas();
 		Integer userid = (Integer) session.getAttribute("userid");
