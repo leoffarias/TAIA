@@ -52,7 +52,7 @@ repositorio.dados.entidades.*"%>
 	
 			<br /><br />
 	<div class="container">
-	<h4>Ofertas de Estágio Similares</h2><br />
+	<h4>Ofertas de Estágio Similares</h4><br />
 		<div class="slide">
 			<%
 				List<Estagio> similares = buscas.getEstagio(
@@ -68,6 +68,28 @@ repositorio.dados.entidades.*"%>
  			}
 			 %>
 			</div>
+		</div>
+		
+	<br /><br /><br />
+	<div class="cont-rec">
+	<div class="container">
+	<h4>Quem se interessa, também se interessa por:</h4><br />
+		<div class="slide">
+			<%
+				List<Estagio> similares2 = buscas.getEstagio(
+						"SELECT e.id, e.funcao, e.empresa FROM estagio e INNER JOIN metricas_estagio u ON e.id = u.id_evento1 OR e.id = u.id_evento2 INNER JOIN usuarios_estagio ue ON e.id = ue.id_eve WHERE e.id != "
+								+ eid + " AND ue.peso = 0 AND ue.id_usu = "+userid+" AND (u.id_evento1 = "+eid+" OR u.id_evento2 = "+eid+") ORDER BY u.cn DESC LIMIT 8",
+						"rec");
+				for (Estagio estagio : similares2) {
+			%>
+			<div>
+				<a href="../estagio/index.jsp?id=<%=estagio.getId()%>"> <img
+					class="img-ev" src="../estagio/img/<%=estagio.getId()%>" /> <%
+ 			out.println(estagio.getFuncao() + " - "+estagio.getEmpresa()+" </a></div>");
+ 			}
+			 %>
+			</div>
+		</div>
 		</div>
 
 		<script type="text/javascript"

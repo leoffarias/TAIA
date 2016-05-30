@@ -53,7 +53,7 @@ repositorio.dados.entidades.*"%>
 	
 		<br /><br />
 	<div class="container">
-	<h4>Matérias Similares</h2><br />
+	<h4>Matérias Similares</h4><br />
 		<div class="slide">
 			<%
 				List<Materia> similares = buscas.getMaterias(
@@ -70,7 +70,27 @@ repositorio.dados.entidades.*"%>
 			 %>
 			</div>
 		</div>
-
+		<br /><br /><br>
+		<div class="cont-rec">
+	<div class="container">
+	<h4>Quem se interessa, também se interessa por:</h4><br />
+		<div class="slide">
+			<%
+				List<Materia> similares2 = buscas.getMaterias(
+						"SELECT e.id, e.nome_curto, e.id_univ FROM materia e INNER JOIN metricas_materia u ON e.id = u.id_evento1 OR e.id = u.id_evento2 INNER JOIN usuarios_materias ue ON e.id = ue.id_eve WHERE e.id != "
+								+ eid + " AND ue.peso = 0 AND ue.id_usu = "+userid+" AND (u.id_evento1 = "+eid+" OR u.id_evento2 = "+eid+") ORDER BY u.cn DESC LIMIT 8",
+						"rec");
+				for (Materia materia : similares2) {
+			%>
+			<div>
+				<a href="../materia/index.jsp?id=<%=materia.getId()%>"> <img
+					class="img-ev" src="../univ/img/<%=materia.getIdUniv()%>" /> <%
+ 			out.println(materia.getNomeCurto() + "</a></div>");
+ 			}
+			 %>
+			</div>
+		</div>
+		</div>		
 		<script type="text/javascript"
 			src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript"
