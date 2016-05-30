@@ -33,7 +33,7 @@ public class Buscas {
 				}
 				evento.setId(rs.getInt("id"));
 				if(!tipo.equals("rec")) {
-				evento.setTags(rs.getString("tags"));
+					evento.setTags(rs.getString("tags"));
 				}
 
 				// adicionando o objeto à lista
@@ -62,9 +62,16 @@ public class Buscas {
 				if (tipo.equals("grau")) {
 					materia.setNomeCurto(rs.getString("nome_curto"));
 					materia.setIdUniv(rs.getInt("id_univ"));
+					materia.setId(rs.getInt("id"));
+					materia.setTags(rs.getString("tags"));
+				} else if(tipo.equals("rec")) {
+					materia.setId(rs.getInt("id"));
+					materia.setNomeCurto(rs.getString("nome_curto"));
+					materia.setIdUniv(rs.getInt("id_univ"));
+				} else {
+					materia.setId(rs.getInt("id"));
+					materia.setTags(rs.getString("tags"));
 				}
-				materia.setId(rs.getInt("id"));
-				materia.setTags(rs.getString("tags"));
 
 				// adicionando o objeto à lista
 				materias.add(materia);
@@ -91,10 +98,16 @@ public class Buscas {
 				Estagio estagio = new Estagio();
 				if(tipo.equals("grau")) {
 					estagio.setFuncao(rs.getString("funcao"));
+					estagio.setId(rs.getInt("id"));
+					estagio.setTags(rs.getString("tags"));
+				} else if (tipo.equals("rec")) {
+					estagio.setFuncao(rs.getString("funcao"));
+					estagio.setId(rs.getInt("id"));
+					estagio.setEmpresa(rs.getString("empresa"));					
+				} else {
+					estagio.setId(rs.getInt("id"));
+					estagio.setTags(rs.getString("tags"));
 				}
-				estagio.setId(rs.getInt("id"));
-				estagio.setTags(rs.getString("tags"));
-
 				// adicionando o objeto à lista
 				estagios.add(estagio);
 			}
@@ -115,10 +128,11 @@ public class Buscas {
 			Aluno aluno = new Aluno();
 			while (rs.next()) {
 				if(tipo == "user") {
-				aluno.setNome(rs.getString("nome"));
-				aluno.setId(rs.getInt("id"));
+					aluno.setNome(rs.getString("nome"));
+					aluno.setId(rs.getInt("id"));
+					aluno.setIdUniv(rs.getInt("id_univ"));
 				} else {
-				aluno.setTags(rs.getString("tags"));
+					aluno.setTags(rs.getString("tags"));
 				}
 			}
 			rs.close();
