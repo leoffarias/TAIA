@@ -38,10 +38,10 @@ repositorio.dados.entidades.*"%>
 			</div>
 
 			<div class="form-group">
-				<label for="inputCentro" class="col-sm-2 control-label">Centro</label>
+				<label for="inputCentro" class="col-sm-2 control-label">Descrição</label>
 				<div class="col-sm-10">
 					<input type="text" name="centro" id="inputCentro"
-						class="form-control" placeholder="Centro (Ex. CIn)">
+						class="form-control" placeholder="Informações, dias, professor, centro...">
 				</div>
 			</div>
 			<div class="form-group">

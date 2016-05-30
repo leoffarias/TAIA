@@ -39,9 +39,10 @@ repositorio.dados.entidades.*"%>
 					for (Evento evento : eventos) {
 				%>
 				<div>
+					<a href="../evento/index.jsp?id=<%=evento.getId()%>">
 					<img class="img-ev" src="../evento/img/<%=evento.getId()%>" />
 					<%
-						out.println(evento.getNomeCurto() + " </div>");
+						out.println(evento.getNomeCurto() + "</a></div>");
 						}
 					Integer iduniv = (Integer) session.getAttribute("iduniv");
 					List<Materia> materias = buscas.getMaterias(
@@ -51,9 +52,10 @@ repositorio.dados.entidades.*"%>
 					for (Materia materia : materias) {
 					%>
 					<div>
+					<a href="../materia/index.jsp?id=<%=materia.getId()%>">
 					<img class="img-ev" src="../univ/img/<%=materia.getIdUniv()%>" />
 					<%
-						out.println(materia.getNomeCurto() + " </div>");
+						out.println(materia.getNomeCurto() + " </a></div>");
 						}
 					List<Estagio> estagios = buscas.getEstagio(
 							"SELECT e.id, e.funcao, e.empresa FROM estagio e INNER JOIN usuarios_estagio u ON e.id = u.id_eve WHERE u.id_usu = "
@@ -61,10 +63,11 @@ repositorio.dados.entidades.*"%>
 							"rec");
 					for (Estagio estagio : estagios) {					
 					%>
-										<div>
+					<div>
+					<a href="../estagio/index.jsp?id=<%=estagio.getId()%>">
 					<img class="img-ev" src="../estagio/img/<%=estagio.getId()%>" />
 					<%
-						out.println(estagio.getFuncao() + " - "+estagio.getEmpresa()+" </div>");
+						out.println(estagio.getFuncao() + " - "+estagio.getEmpresa()+" </a></div>");
 						}
 					%>
 				</div><!-- Slide -->				

@@ -31,10 +31,19 @@ public class Buscas {
 				if(tipo.equals("grau") || tipo.equals("rec")) {
 					evento.setNomeCurto(rs.getString("nome_curto"));
 				}
+				else if(tipo.equals("detalhes")) {
+					evento.setDescricao(rs.getString("descricao"));
+					evento.setNome(rs.getString("nome"));
+					evento.setEndereco(rs.getString("endereco"));
+					evento.setTipo(rs.getString("tipo"));
+					evento.setDia(rs.getInt("dia"));
+					evento.setHora(rs.getString("hora"));
+				}
 				evento.setId(rs.getInt("id"));
 				if(!tipo.equals("rec")) {
 					evento.setTags(rs.getString("tags"));
 				}
+
 
 				// adicionando o objeto à lista
 				eventos.add(evento);
@@ -68,6 +77,13 @@ public class Buscas {
 					materia.setId(rs.getInt("id"));
 					materia.setNomeCurto(rs.getString("nome_curto"));
 					materia.setIdUniv(rs.getInt("id_univ"));
+				} else if (tipo.equals("detalhes")) {
+					materia.setNome(rs.getString("nome"));
+					materia.setCodigo(rs.getString("codigo"));
+					materia.setCentro(rs.getString("centro"));
+					materia.setIdUniv(rs.getInt("id_univ"));
+					materia.setIdCurso(rs.getInt("id_curso"));
+					materia.setTags(rs.getString("tags"));
 				} else {
 					materia.setId(rs.getInt("id"));
 					materia.setTags(rs.getString("tags"));
@@ -104,7 +120,15 @@ public class Buscas {
 					estagio.setFuncao(rs.getString("funcao"));
 					estagio.setId(rs.getInt("id"));
 					estagio.setEmpresa(rs.getString("empresa"));					
-				} else {
+				} else if (tipo.equals("detalhes")) {
+					estagio.setFuncao(rs.getString("funcao"));
+					estagio.setEmpresa(rs.getString("empresa"));
+					estagio.setDescricao(rs.getString("descricao"));
+					estagio.setSite(rs.getString("site"));
+					estagio.setTags(rs.getString("tags"));
+					estagio.setIdCurso(rs.getInt("id_curso"));
+				}
+				else {
 					estagio.setId(rs.getInt("id"));
 					estagio.setTags(rs.getString("tags"));
 				}
@@ -138,6 +162,42 @@ public class Buscas {
 			rs.close();
 			stmt.close();
 			return aluno;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public Universidade getUniv(String sql) throws SQLException {
+
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			Universidade univ = new Universidade();
+			while (rs.next()) {
+					univ.setNome(rs.getString("nome"));
+			}
+			rs.close();
+			stmt.close();
+			return univ;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public Curso getCurso(String sql) throws SQLException {
+
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			Curso curso = new Curso();
+			while (rs.next()) {
+					curso.setNome(rs.getString("nome"));
+			}
+			rs.close();
+			stmt.close();
+			return curso;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
