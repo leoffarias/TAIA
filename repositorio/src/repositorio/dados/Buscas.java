@@ -28,11 +28,13 @@ public class Buscas {
 
 				// criando o objeto Contato
 				Evento evento = new Evento();
-				if(tipo.equals("grau")) {
+				if(tipo.equals("grau") || tipo.equals("rec")) {
 					evento.setNomeCurto(rs.getString("nome_curto"));
 				}
 				evento.setId(rs.getInt("id"));
+				if(!tipo.equals("rec")) {
 				evento.setTags(rs.getString("tags"));
+				}
 
 				// adicionando o objeto à lista
 				eventos.add(evento);

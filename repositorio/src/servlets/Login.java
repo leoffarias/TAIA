@@ -3,7 +3,8 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +25,6 @@ public class Login extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
-		//session.setAttribute("attEv", "teste");
 		
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -43,9 +43,20 @@ public class Login extends HttpServlet {
 			   out.println("location='index.html';");
 			   out.println("</script>");
 		} else {
-			session.setAttribute("nomeusu", aluno.getNome());
+			session.setAttribute("nome", aluno.getNome());
 			session.setAttribute("userid", aluno.getId());
-			response.sendRedirect("../home");
+			
+			//Tentar colocar quando inicia o sistema
+			List<Integer> attEv = new ArrayList<Integer>();
+			List<Integer> attEst = new ArrayList<Integer>();
+			List<Integer> attMat = new ArrayList<Integer>();
+			List<Integer> attAlu = new ArrayList<Integer>();
+			session.setAttribute("attEv", attEv);
+			session.setAttribute("attEst", attEst);
+			session.setAttribute("attMat", attMat);
+			session.setAttribute("attAlu", attAlu);
+			
+			response.sendRedirect("home");
 		}
 	}
 }

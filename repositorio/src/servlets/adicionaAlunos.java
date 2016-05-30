@@ -67,6 +67,7 @@ public class adicionaAlunos extends HttpServlet {
 			session.setAttribute("attEst", attEst);
 			session.setAttribute("attMat", attMat);
 			session.setAttribute("attAlu", attAlu);
+			session.setAttribute("nome", nome);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

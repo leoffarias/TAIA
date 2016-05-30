@@ -64,7 +64,6 @@ repositorio.dados.entidades.*"%>
 		<div class="col-sm-4">
 			<img src="../../univ/img/<%=materia.getIdUniv()%>" width="200"
 				height="200" />
-			<!-- TEM QUE AJEITAR -->
 			<p>
 				<%
 					out.println(materia.getNomeCurto());
