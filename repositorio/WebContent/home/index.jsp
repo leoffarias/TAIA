@@ -26,17 +26,20 @@ repositorio.dados.entidades.*"%>
 	</div>
 	<div class="cont-rec">
 		<div class="container">
-			<% Buscas buscas = new Buscas();
-			Integer userid = (Integer) session.getAttribute("userid");
-		List<Evento> eventos = buscas.getEventos(
-					"SELECT e.id, e.nome_curto FROM evento e WHERE NOT EXISTS (SELECT u.id_eve FROM usuarios_eventos u WHERE u.id_eve = e.id AND u.id_usu = "+userid+" AND peso = 1 ORDER BY u.jaccard) LIMIT 2",
-					"rec");
-		for (Evento evento : eventos) {
-			out.println(evento.getNomeCurto());
-		}
-		%>
-		
-
+			<%
+				Buscas buscas = new Buscas();
+				Integer userid = (Integer) session.getAttribute("userid");
+				List<Evento> eventos = buscas.getEventos(
+						"SELECT e.id, e.nome_curto FROM evento e INNER JOIN usuarios_eventos u ON e.id = u.id_eve WHERE u.id_usu = "
+								+ userid + " AND peso != 1 ORDER BY jaccard DESC LIMIT 2",
+						"rec");
+				for (Evento evento : eventos) {
+			%>
+				<img src="../evento/img/<%=evento.getId()%>" />
+			<%
+				out.println(evento.getNomeCurto());
+				}
+			%>
 		</div>
 	</div>
 </body>
