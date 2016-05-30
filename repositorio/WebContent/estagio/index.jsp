@@ -10,6 +10,8 @@ repositorio.dados.entidades.*"%>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" type="text/css" href="../slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet"
@@ -19,6 +21,7 @@ repositorio.dados.entidades.*"%>
 	<nav></nav>
 	<%
 		Buscas buscas = new Buscas();
+		Integer userid = (Integer) session.getAttribute("userid");
 		int eid = Integer.parseInt(request.getParameter("id"));
 		List<Estagio> estagios = buscas.getEstagio(
 				"SELECT e.funcao, e.empresa, e.descricao, e.id_curso, e.site, e.tags FROM estagio e WHERE e.id = " + eid + ";",
@@ -46,6 +49,33 @@ repositorio.dados.entidades.*"%>
 			<% } %>
 		</div>
 	</div>
+	
+			<br /><br />
+	<div class="container">
+	<h4>Ofertas de Estágio Similares</h2><br />
+		<div class="slide">
+			<%
+				List<Estagio> similares = buscas.getEstagio(
+						"SELECT e.id, e.funcao, e.empresa FROM estagio e INNER JOIN metricas_estagio u ON e.id = u.id_evento1 OR e.id = u.id_evento2 INNER JOIN usuarios_estagio ue ON e.id = ue.id_eve WHERE e.id != "
+								+ eid + " AND ue.peso = 0 AND ue.id_usu = "+userid+" AND (u.id_evento1 = "+eid+" OR u.id_evento2 = "+eid+") ORDER BY u.jaccard DESC LIMIT 8",
+						"rec");
+				for (Estagio estagio : similares) {
+			%>
+			<div>
+				<a href="../estagio/index.jsp?id=<%=estagio.getId()%>"> <img
+					class="img-ev" src="../estagio/img/<%=estagio.getId()%>" /> <%
+ 			out.println(estagio.getFuncao() + " - "+estagio.getEmpresa()+" </a></div>");
+ 			}
+			 %>
+			</div>
+		</div>
+
+		<script type="text/javascript"
+			src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript"
+			src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script type="text/javascript" src="../slick/slick.min.js"></script>
+		<script type="text/javascript" src="../js/main.js"></script>
 </body>
 
 </html>
