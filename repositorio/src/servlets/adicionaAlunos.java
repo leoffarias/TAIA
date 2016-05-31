@@ -31,8 +31,8 @@ public class adicionaAlunos extends HttpServlet {
 
 		// pegando os parâmetros do request
 		String nome = request.getParameter("nome");
-		String idUniversidade = request.getParameter("idUniversidade");
-		String idCurso = request.getParameter("idCurso");
+		int idUniversidade = Integer.parseInt(request.getParameter("idUniversidade"));
+		int idCurso = Integer.parseInt(request.getParameter("idCurso"));
 		String tags = request.getParameter("tags");
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -45,8 +45,8 @@ public class adicionaAlunos extends HttpServlet {
 		// monta um objeto contato
 		Aluno aluno = new Aluno();
 		aluno.setNome(nome);
-		aluno.setIdUniv(Integer.parseInt(idUniversidade));
-		aluno.setIdCurso(Integer.parseInt(idCurso));
+		aluno.setIdUniv(idUniversidade);
+		aluno.setIdCurso(idCurso);
 		aluno.setFoto(inputStream);
 		aluno.setTags(tags);
 		aluno.setEmail(email);
