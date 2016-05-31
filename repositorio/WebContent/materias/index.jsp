@@ -15,13 +15,10 @@ repositorio.dados.entidades.*"%>
 	rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<nav></nav>
+	<nav><a href="../home" class="voltar">< Voltar</a></nav>
 	<div class="container">
 		<h2 class="tit">
-			Bem vindo,
-			<%
-			out.println(session.getAttribute("nome"));
-		%>
+			Disciplinas
 		</h2>
 		<br />
 		<h4>Recomendados para você</h4>
@@ -33,62 +30,27 @@ repositorio.dados.entidades.*"%>
 					Buscas buscas = new Buscas();
 					Integer userid = (Integer) session.getAttribute("userid");
 					Integer idcurso = (Integer) session.getAttribute("idcurso");
-					List<Evento> eventos = buscas.getEventos(
-							"SELECT e.id, e.nome_curto FROM evento e INNER JOIN usuarios_eventos u ON e.id = u.id_eve WHERE u.id_usu = "
-									+ userid + " AND peso = 0 ORDER BY jaccard DESC LIMIT 3",
-							"rec");
-					for (Evento evento : eventos) {
-				%>
-				<div>
-					<a href="../evento/index.jsp?id=<%=evento.getId()%>">
-					<img class="img-ev" src="../evento/img/<%=evento.getId()%>" />
-					<%
-						out.println(evento.getNomeCurto() + "</a></div>");
-						}
 					Integer iduniv = (Integer) session.getAttribute("iduniv");
 					List<Materia> materias = buscas.getMaterias(
 							"SELECT e.id, e.nome_curto, e.id_univ FROM materia e INNER JOIN usuarios_materias u ON e.id = u.id_eve WHERE u.id_usu = "
-									+ userid + " AND peso = 0 AND e.id_univ = "+iduniv+" ORDER BY jaccard DESC LIMIT 3",
+									+ userid + " AND peso = 0 AND e.id_univ = "+iduniv+" ORDER BY jaccard DESC LIMIT 8",
 							"rec");
 					for (Materia materia : materias) {
-					%>
+				%>
 					<div>
 					<a href="../materia/index.jsp?id=<%=materia.getId()%>">
 					<img class="img-ev" src="../univ/img/<%=materia.getIdUniv()%>" />
 					<%
 						out.println(materia.getNomeCurto() + " </a></div>");
 						}
-					List<Estagio> estagios = buscas.getEstagio(
-							"SELECT e.id, e.funcao, e.empresa FROM estagio e INNER JOIN usuarios_estagio u ON e.id = u.id_eve WHERE u.id_usu = "
-									+ userid + " AND peso = 0 AND e.id_curso = "+idcurso+" ORDER BY jaccard DESC LIMIT 3",
-							"rec");
-					for (Estagio estagio : estagios) {					
-					%>
-					<div>
-					<a href="../estagio/index.jsp?id=<%=estagio.getId()%>">
-					<img class="img-ev" src="../estagio/img/<%=estagio.getId()%>" />
-					<%
-						out.println(estagio.getFuncao() + " - "+estagio.getEmpresa()+" </a></div>");
-						}
 					%>
 				</div><!-- Slide -->				
 			</div> 
 		</div>
 		<br /><br />
-		<div class="container procura" style="text-align:center;">
+		<div class="container">
 		<h4 style="text-align:left;">O que você procura?</h4><br />
-			<div class="col-md-4"><a href="../eventos">
-			<img src="../img/evento.png" alt="evento" /></a>
-			<p><a href="../eventos"><strong>Eventos</strong></a></p>
-			</div>
-			<div class="col-md-4"><a href="../materias">
-			<img src="../img/disciplina.png" alt="disciplinas" /></a>
-			<p><a href="../materias"><strong>Disciplinas</strong></a></p>
-			</div>
-			<div class="col-md-4"><a href="../estagios">
-			<img src="../img/estagio.png" alt="estagio" /></a>
-			<p><a href="../estagios"><strong>Estágios</strong></a></p>
-			</div>
+
 		</div>
 
 		<script type="text/javascript"

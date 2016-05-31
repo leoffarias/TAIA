@@ -148,3 +148,11 @@ hr.star-primary:after {
     font-size: 1.2em;
     color: white;
 }
+
+.procura {
+	text-align:center;
+}
+
+.procura img {
+	max-width:150px;
+}
