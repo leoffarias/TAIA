@@ -50,8 +50,28 @@ repositorio.dados.entidades.*"%>
 		<div class="container">
 			<h4 style="text-align: left;">Usuários parecidos com você se
 				interessam por:</h4>
+			<div class="slide">
 			<br />
+			
+			<%
+				Aluno aluno = buscas.getAluno(
+					"SELECT id FROM aluno a INNER JOIN metricas_usuarios e2 ON (a.id = e2.id_usu1 OR a.id = e2.id_usu2) WHERE (e2.id_usu1 = "+userid+" OR e2.id_usu2 = "+userid+") AND a.id != "+userid+" ORDER BY e2.aa DESC LIMIT 1",
+					"grau");
+			    int alunoid = aluno.getId();
+				estagios = buscas.getEstagio(
+						//"SELECT id, nome_curto, tags FROM evento e INNER JOIN usuarios_eventos u ON e.id = u.id_eve INNER JOIN aluno a ON a.id = u.id_usu INNER JOIN metricas_usuarios e2 ON (a.id = e2.id_usu1 OR a.id = e2.id_usu2) WHERE (e2.id_usu1 = "+userid+" OR e2.id_usu2 = "+userid+") AND a.id != "+userid+" ORDER BY e2.aa DESC LIMIT 2) AND NOT EXISTS (SELECT 1 FROM usuarios_eventos WHERE id_usu = "+userid+" AND id_eve = e.id AND peso = 1 ) ",
+						"SELECT id, funcao, tags FROM estagio e INNER JOIN usuarios_estagio e2 ON e.id = e2.id_eve WHERE NOT EXISTS (SELECT 1 FROM usuarios_estagio WHERE id_usu = "+userid+" AND id_eve = e.id AND peso = 1 ) AND e2.id_usu = "+alunoid+" AND e2.peso = 1 ORDER BY e2.jaccard DESC LIMIT 8;",
+						"grau");
+				for (Estagio estagio : estagios) {
+			%>
+			
+			<div>
+				<a href="../estagio/index.jsp?id=<%=estagio.getId()%>"> <img class="img-ev" src="../estagio/img/<%=estagio.getId()%>" /> <%
+ 				out.println(estagio.getFuncao() + "</a></div>");
+ 				}
+ 			%>
 
+		</div>
 		</div>
 
 		<br /> <br />

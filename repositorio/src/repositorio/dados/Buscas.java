@@ -151,12 +151,15 @@ public class Buscas {
 			ResultSet rs = stmt.executeQuery();
 			Aluno aluno = new Aluno();
 			while (rs.next()) {
-				if(tipo == "user") {
+				if(tipo.equals("user")) {
 					aluno.setNome(rs.getString("nome"));
 					aluno.setId(rs.getInt("id"));
 					aluno.setIdUniv(rs.getInt("id_univ"));
 					aluno.setIdCurso(rs.getInt("id_curso"));
-				} else {
+				} else if(tipo.equals("grau")) {
+					aluno.setId(rs.getInt("id"));
+				}
+				else {
 					aluno.setTags(rs.getString("tags"));
 				}
 			}
