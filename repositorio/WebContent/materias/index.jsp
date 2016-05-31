@@ -47,11 +47,93 @@ repositorio.dados.entidades.*"%>
 				</div><!-- Slide -->				
 			</div> 
 		</div>
-		<br /><br />
+		
+		<br /> <br />
 		<div class="container">
-		<h4 style="text-align:left;">O que você procura?</h4><br />
+			<h4 style="text-align: left;">Usuários parecidos com você se
+				interessam por:</h4>
+			<br />
 
 		</div>
+
+		<br /> <br />
+		<!-- <div class="container">
+			<h4 style="text-align: left;">Eventos parecidos com x</h4>
+			<br />
+
+		</div>
+
+		<br /> <br /> -->
+		<div class="cont-rec">
+		<div class="container">
+			<h4 style="text-align: left;">Disciplinas mais populares</h4>
+			<div class="slide">
+			<br />
+
+			<%
+				materias = buscas.getMaterias(
+						"SELECT id, nome_curto, tags, id_univ FROM materia e INNER JOIN usuarios_materias e2 ON e.id = e2.id_eve WHERE NOT EXISTS (SELECT 1 FROM usuarios_materias WHERE id_usu = "+userid+" AND id_eve = e.id AND peso = 1 ) GROUP BY e.id ORDER BY COUNT(*) DESC LIMIT 8",
+						"grau");
+				for (Materia materia : materias) {
+			%>
+			<div>
+				<a href="../materia/index.jsp?id=<%=materia.getId()%>"> <img class="img-ev" src="../univ/img/<%=materia.getIdUniv()%>" /> <%
+ 				out.println(materia.getNomeCurto() + "</a></div>");
+ 				}
+ 			%>
+			</div>
+			</div>
+			</div>
+			<br /> <br />
+			<!--  <div class="container">
+				<h4 style="text-align: left;">Quem se interessa por x, também
+					se interessa por:</h4>
+				<br />
+
+			</div>
+
+			<br /> <br />-->
+			<div class="container">
+				<h4 style="text-align: left;">Novidades</h4>
+				<div class="slide">
+			<br />
+
+			<%
+				materias = buscas.getMaterias(
+						"SELECT id, nome_curto, tags, id_univ FROM materia e WHERE NOT EXISTS (SELECT 1 FROM usuarios_materias WHERE id_usu = "+userid+" AND id_eve = e.id AND peso = 1 ) ORDER BY e.id DESC LIMIT 8",
+						"grau");
+				for (Materia materia : materias) {
+			%>
+			<div>
+				<a href="../materia/index.jsp?id=<%=materia.getId()%>"> <img class="img-ev" src="../univ/img/<%=materia.getIdUniv()%>" /> <%
+ 				out.println(materia.getNomeCurto() + "</a></div>");
+ 				}
+ 			%>
+			</div>
+			</div>
+
+			<br /> <br />
+			<div class="cont-rec">
+			<div class="container">
+				<h4 style="text-align: left;">Sugestões aleatórias</h4>
+				<div class="slide">
+			<br />
+
+			<%
+				materias = buscas.getMaterias(
+						"SELECT id, nome_curto, tags, id_univ FROM materia e WHERE NOT EXISTS (SELECT 1 FROM usuarios_materias WHERE id_usu = "+userid+" AND id_eve = e.id AND peso = 1 ) ORDER BY RAND() DESC LIMIT 8",
+						"grau");
+				for (Materia materia : materias) {
+			%>
+			<div>
+				<a href="../materia/index.jsp?id=<%=materia.getId()%>"> <img class="img-ev" src="../univ/img/<%=materia.getIdUniv()%>" /> <%
+ 				out.println(materia.getNomeCurto() + "</a></div>");
+ 				}
+ 			%>
+			</div>
+			</div>
+			</div>
+			<br /><br />
 
 		<script type="text/javascript"
 			src="//code.jquery.com/jquery-1.11.0.min.js"></script>
