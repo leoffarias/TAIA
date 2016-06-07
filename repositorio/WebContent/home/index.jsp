@@ -15,7 +15,7 @@ repositorio.dados.entidades.*"%>
 	rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<nav></nav>
+	<nav><a href="../curtidos" class="voltar">Rever eventos</a></nav>
 	<div class="container">
 		<h2 class="tit">
 			Bem vindo,
